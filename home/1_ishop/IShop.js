@@ -4,23 +4,14 @@ var IShopProductsList = React.createClass({
 
     getDefaultProps: function() {
         return { ishopTitle: "Нет названия у интернет-магазина" }
-      },
+    },
 
-      render: function() {
+    render: function() {
         var productsInfo=[];
+        var productsHeader=[];
         
         function createTheTable(elem, i, arr) {
-            if (i===0) {
-                var elemInfo= 
-                    React.DOM.tr({className:'TableHeader'},
-                        React.DOM.th({className:'HeaderProductName'}, elem.productName),
-                        React.DOM.th({className:'HeaderProductPrice'}, elem.price),
-                        React.DOM.th({className:'HeaderProductPhoto'}, elem.photo),
-                        React.DOM.th({className:'HeaderProductResidue'}, elem.residue)
-                );
-            }
-
-            else {
+            if (!(i===0)) {
                 var elemInfo=        
                     React.DOM.tr({key:elem.code, className:'Product'},
                         React.DOM.td({className:'ProductName'}, elem.productName),
@@ -31,6 +22,8 @@ var IShopProductsList = React.createClass({
                         React.DOM.td({className:'ProductResidue'}, elem.residue),
                     );
             }
+
+            else return;
             
             return elemInfo;
         }
@@ -41,39 +34,20 @@ var IShopProductsList = React.createClass({
 
         return React.DOM.div( {className:'IShopProductsList'},
             React.DOM.table( {className:'IShopInfo'}, 
-                React.DOM.caption( {className:'IShopTitle'}, this.props.title+', ассортимент товаров'), 
-                productsInfo
+                React.DOM.caption( {className:'IShopTitle'}, this.props.title+', ассортимент товаров'),
+                React.DOM.thead( {className:'HeaderContent'}, 
+                    React.DOM.tr({className:'TableHeader'},
+                        React.DOM.th({className:'HeaderProductName'}, this.props.products[0].productName),
+                        React.DOM.th({className:'HeaderProductPrice'}, this.props.products[0].price),
+                        React.DOM.th({className:'HeaderProductPhoto'}, this.props.products[0].photo),
+                        React.DOM.th({className:'HeaderProductResidue'}, this.props.products[0].residue)
+                    )
+                ),
+                React.DOM.tbody( {className:'IShopContent'}, productsInfo),
             )
         )
     },
 
 
-    // render: function() {
-    //     var productsInfo=[];
-    //     for ( var i=1; i<this.props.products.length; i++ ) {
-    //     var product=this.props.products[i];
-    //     var productInfo=        
-    //         React.DOM.tr({key:product.code, className:'Product'},
-    //             React.DOM.td({className:'ProductName'}, product.productName),
-    //             React.DOM.td({className:'ProductPrice'}, product.price),
-    //             React.DOM.td({className:'ProductPhoto'}, 
-    //                 React.DOM.a({href: product.photo, target: '_blank'}, 
-    //                     React.DOM.img({src: product.photo, width: '100px'}))),
-    //             React.DOM.td({className:'ProductResidue'}, product.residue),
-    //         );
-    //     productsInfo.push(productInfo);
-    //     }
-
-    //     return React.DOM.div( {className:'IShopProductsList'},
-    //         React.DOM.table( {className:'IShopInfo'}, 
-    //             React.DOM.caption( {className:'IShopTitle'}, this.props.title+', ассортимент товаров'),
-    //             React.DOM.tr({className:'TableHeader'},
-    //                 React.DOM.th({className:'HeaderProductName'}, this.props.products[0].productName),
-    //                 React.DOM.th({className:'HeaderProductPrice'}, this.props.products[0].price),
-    //                 React.DOM.th({className:'HeaderProductPhoto'}, this.props.products[0].photo),
-    //                 React.DOM.th({className:'HeaderProductResidue'}, this.props.products[0].residue)),
-    //             productsInfo)
-    //     )
-    // },
 
 })
