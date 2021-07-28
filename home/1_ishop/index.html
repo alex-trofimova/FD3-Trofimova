@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_IShop</title>
+</head>
+<body>
+<!-- Создать проект ishop (интернет-магазин) в папке ishop.
+Задать массивом список товаров в интернет-магазине, по каждому товару должны храниться 
+как минимум название, цена, URL фотографии, сколько единиц товара осталось на складе.
+Написать React-компонент, отображающий таблицу с этим списком товаров. 
+Компонент должен получать название магазина и массив товаров через props.
+Задать типы для props компонента.
+При разработке компонента максимально использовать forEach и другие методы обработки массивов.
+ -->
+
+
+ <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="IShop.js"></script>
+  <link rel="stylesheet" type="text/css" href="IShop.css" />
+  
+  
+  <script>
+
+    var ishopTitle='Интернет-магазин автозапчастей "500 Ампер"';
+    var productsInfoArr=[ 
+      {productName:'Наименование товара', code:0, price: 'цена, руб.', photo:'изображение', residue:'остаток на складе, шт.'}, 
+      {productName:'масло моторное Mannol', code:3624, price:37.1, photo:'img/product_1.jpg', residue:10}, 
+      {productName:'жидкость тормозная Motul', code:105835, price:29.4, photo:'img/product_2.jpg', residue:6}, 
+      {productName:'антифриз X-FREEZE', code:28820, price:24.7, photo:'img/product_3.jpg', residue:1}, 
+      {productName:'растворитель Сольвент', code:21862, price:5.5, photo:'img/product_4.jpg', residue:17}, 
+    ];
+
+    ReactDOM.render(
+      React.createElement(IShopProductsList, {title:ishopTitle, products:productsInfoArr}), 
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body>
+</html>
