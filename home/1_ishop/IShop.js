@@ -8,7 +8,6 @@ var IShopProductsList = React.createClass({
 
     render: function() {
         var productsInfo=[];
-        var productsHeader=[];
         
         function createTheTable(elem, i, arr) {
             if (!(i===0)) {
@@ -47,7 +46,4 @@ var IShopProductsList = React.createClass({
             )
         )
     },
-
-
-
 })
