@@ -8,6 +8,10 @@
     margin-bottom: 7px;
 }
 
+.FilterField {
+    margin-right: 5px;
+}
+
 .FilterWordsList {
     width: 90%;
 }
