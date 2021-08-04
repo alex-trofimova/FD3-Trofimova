@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2_Filter</title>
+</head>
+<body>
+<!-- 
+Создать проект filter (фильтр) в папке filter.
+Компоненту в props передаётся массив строк. 
+Он отображает их в виде вертикального прокручивающегося списка.
+Выше списка отображается поле текстового ввода, птичка (checkbox) и кнопка сброса.
+При вводе текста в поле в списке остаются только те строки, которые содержат введённый текст.
+При установке птички строки отображаются в алфавитном порядке, при снятии — в том же порядке, 
+в каком они расположены в массиве.
+При нажатии кнопки "сброс" состояние птички и текстового поля сбрасывается, 
+список приходит в первоначальное состояние.    
+ -->
+
+ <div id="container"></div> 
+      
+ <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+ <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+  
+ <!-- FilterBlock - Родительский компонент - содержит все -->
+<script src="FilterBlock.js"></script>
+<link rel="stylesheet" type="text/css" href="FilterBlock.css" />
+
+<!-- FilterOption - Дочерний компонент - содержит поле текстового ввода -->
+<script src="FilterOption.js"></script>
+<link rel="stylesheet" type="text/css" href="FilterOption.css" />
+
+<script>
+
+// массив хэшей со словами
+
+var initialwordsListArr = [
+    'частнопредпринимательский',
+    'переосвидетельствоваться',
+    'субстанциализироваться',
+    'высокопревосходительство', 
+    'одиннадцатиклассница', 
+    'делопроизводительница', 
+];
+  
+var initialfilterFieldText='';
+
+ReactDOM.render(
+      React.createElement(FilterBlock, {initWordsList:initialwordsListArr, 
+                                        startShowMode:1, 
+                                        initfilterFieldText: initialfilterFieldText}), 
+      document.getElementById('container') 
+);
+
+
+</script>
+</body>
+</html>

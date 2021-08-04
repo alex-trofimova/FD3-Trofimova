@@ -1,0 +1,13 @@
+.FilterWrapper {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.FilterOptions {
+    margin-bottom: 7px;
+}
+
+.FilterWordsList {
+    width: 90%;
+}
