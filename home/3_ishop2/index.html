@@ -37,10 +37,10 @@
       {productName:'растворитель Сольвент', code:21862, price:5.5, url:'img/product_4.jpg', residue:17}, 
     ];
 
-    var initialRowStyle = 'ProductInfo_init';
+    // var initialRowStyle = 'ProductInfo_init';
 
     ReactDOM.render(
-      React.createElement(IShop, {title:ishopTitle, products:productsInfoArr, initRowStyle:initialRowStyle}), 
+      React.createElement(IShop, {title:ishopTitle, products:productsInfoArr}), 
       document.getElementById('container') 
     );
 //   {productName:'Наименование товара', code:0, price: 'цена, руб.', url:'изображение', residue:'остаток на складе, шт.'}, 

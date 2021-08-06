@@ -3,48 +3,56 @@ var IShop = React.createClass({
     displayName: 'IShop',
 
     propTypes: {
-        title: React.PropTypes.string.isRequired,
-        products:React.PropTypes.arrayOf(
+        title: React.PropTypes.string.isRequired, //название интернет-магазина
+        products:React.PropTypes.arrayOf( //массив со списком товаром и их хар-ками
           React.PropTypes.shape({
             productName: React.PropTypes.string.isRequired,
             code: React.PropTypes.number.isRequired,
             price: React.PropTypes.number.isRequired,
             url: React.PropTypes.string.isRequired,
             residue: React.PropTypes.number.isRequired,
-            //initRowStyle: React.PropTypes.string.isRequired,
           })
         )
     },
 
 
     getInitialState: function() {
-        return { 
-          selectedProductCode: null,
-          deletedProductCode: null,
+        return {
+          productsList: this.props.products,  //массив товаров 
+          selectedProductCode: null, //артикул выделяемого товара
+          deletedProductCode: null, //артикул товара, предназначенного для удаления
         };
     },
 
+    //описание функции для удаления товара по кнопке удалить
     productToRemove: function(code) {
-        console.log('планируется удалить продукт с кодом '+code);
-        this.setState( {deletedProductCode:code} );
+        this.setState( {deletedProductCode:code} ); //запоминается в состоянии артикул
+        var sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
+        if (sureDelete) {
+            this.setState( {productsList:this.state.productsList.filter(elem => elem.code!=code)} ); //массив обрезается минус товар с таким артикулом
+        }
+        else {
+            this.setState( {productsList:this.state.productsList} );
+        }        
     },
 
+    //описание функции для выделения товара по клику на строку (кроме кнопки)
     productSelected: function(code){
-        console.log('выбран продукт с кодом '+code);
         this.setState( {selectedProductCode:code} );
     },
 
     render: function() {
-        var ishopTableContent=this.props.products.map( elem =>
+        var ishopTableContent=this.state.productsList.map( elem =>
           React.createElement(Product, {key:elem.code, productName:elem.productName, code:elem.code,
                                         price:elem.price, url:elem.url, residue:elem.residue,
-                                        initRowStyle:initialRowStyle,
                                         cbSelected:this.productSelected,
                                         cbToRemove:this.productToRemove,
-                                        selectedProductCode:this.state.selectedProductCode,} )
+                                        selectedProductCode:this.state.selectedProductCode,
+                                        deletedProductCode:this.state.deletedProductCode,
+                                        productsList:this.state.productsList} )
         );
 
-        return React.DOM.div( {className:'IShopProductsList'},
+        return React.DOM.div( {className:'IShopProductsList'},  
             React.DOM.table( {className:'IShopInfo'}, 
                 React.DOM.caption( {className:'IShopTitle'}, this.props.title+', ассортимент товаров'),
                 React.DOM.thead( {className:'HeaderContent'}, 
