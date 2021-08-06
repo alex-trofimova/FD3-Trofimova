@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+</head>
+<body>
+<!--На основе проекта ishop разработать проект ishop2 (интернет-магазин) в папке ishop2.
+Должно быть описано два компонента — «Магазин» и «Товар».
+Один из товаров может быть сделан «выбранным» щелчком в любое место строки. 
+Строка выбранного товара выделяется цветом.
+В каждой строке с товаром — кнопка «удалить».
+По нажатию кнопки «удалить» у пользователя запрашивается подтверждения удаления (confirm) и 
+товар удаляется.  -->
+
+<div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+   
+  <!-- Родительский Компонент IShop -->
+  <script src="IShop.js"></script>
+  <link rel="stylesheet" type="text/css" href="IShop.css" />
+
+  <!-- Дочерний Компонент Product -->
+  <script src="Product.js"></script>
+  <link rel="stylesheet" type="text/css" href="Product.css" />
+
+  <script>
+    var ishopTitle='Интернет-магазин автозапчастей "500 Ампер"';
+    var productsInfoArr=[ 
+      {productName:'масло моторное Mannol', code:3624, price:37.1, url:'img/product_1.jpg', residue:10}, 
+      {productName:'жидкость тормозная Motul', code:105835, price:29.4, url:'img/product_2.jpg', residue:6}, 
+      {productName:'антифриз X-FREEZE', code:28820, price:24.7, url:'img/product_3.jpg', residue:1}, 
+      {productName:'растворитель Сольвент', code:21862, price:5.5, url:'img/product_4.jpg', residue:17}, 
+    ];
+
+    var initialRowStyle = 'ProductInfo_init';
+
+    ReactDOM.render(
+      React.createElement(IShop, {title:ishopTitle, products:productsInfoArr, initRowStyle:initialRowStyle}), 
+      document.getElementById('container') 
+    );
+//   {productName:'Наименование товара', code:0, price: 'цена, руб.', url:'изображение', residue:'остаток на складе, шт.'}, 
+  </script>
+</body>
+</html>

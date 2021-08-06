@@ -26,9 +26,7 @@ var FilterBlock = React.createClass({
 
     //описание функции при нажатии кнопки сброс - возврат к исходному состоянию
     returnToInitState: function(){
-      this.setState( {showMode:1} );
-      this.setState( {isSorted:false} );
-      this.setState( {filterFieldText:''} );
+      this.setState( {showMode:1, isSorted:false, filterFieldText:''} );
     },
 
     //описание функции при работе с чекбоксом - для сортировки
@@ -78,11 +76,11 @@ var FilterBlock = React.createClass({
                               value:this.state.filterFieldText, 
                               onChange:this.filterFieldTextChanged} ),
             //кнопка сброс
-            React.DOM.input( {type:'button',value:'сброс', onClick:this.returnToInitState} ),
+            React.DOM.input( {type:'button',value:'сброс',onClick:this.returnToInitState} ),
           ),
           
           //выпадающий список
-          React.DOM.select( {multiple:true, name:'WordsList', className:'FilterWordsList'}, 
+          React.DOM.select( {multiple:true, name:'WordsList',className:'FilterWordsList'}, 
             listContent
           ),
         )  
