@@ -1,37 +1,34 @@
 const path = require('path');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-module.exports = {
-  mode: 'production',
+const extractCSS = new ExtractTextPlugin({
+    filename: "bundle.css"
+});
 
-  entry: './src/index.js',
-
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.(css)$/,
-        use: [MiniCssExtractPlugin.loader,
-            'css-loader'],
-      },
-    ],
-  },
-
-  devtool:'source-map',
-
-  optimization: {
-    minimize: false
-  },
-
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'main.css',
-    }),
-  ],
-
-};
+module.exports = { 
+    entry: "./App.js", // основной файл приложения
+    output:{ 
+        path: __dirname, // путь к каталогу выходных файлов
+        filename: "bundle.js"  // название создаваемого файла 
+    }, 
+    devtool:'source-map',
+    module:{ 
+        rules:[
+            { 
+                test: /\.jsx?$/, // какие файлы обрабатывать
+                exclude: /node_modules/, // какие файлы пропускать
+                use: { loader: "babel-loader" }
+            },
+            {
+                test: /\.css$/,
+                use: extractCSS.extract({
+                    use: ["css-loader"]
+                })
+            }            
+        ] 
+    },
+    plugins: [
+        extractCSS
+    ]
+}
