@@ -13,12 +13,19 @@ class Product extends React.Component {
         residue: PropTypes.number.isRequired,
         cbSelected: PropTypes.func.isRequired, //callback-функция для выделения строки с товаром
         cbToRemove: PropTypes.func.isRequired, //callback-функция для удаления строки с товаром
+        cbToEdit: PropTypes.func.isRequired, //callback-функция для редактирования соответствующего товара
         selectedProductCode: PropTypes.number, // может быть null, пока ни один товар не выбран
-        deletedProductCode: PropTypes.number, // может быть null, пока ни один товар не выбран для удаления
+        editedProductCode: PropTypes.number, // может быть null, пока ни один товар не выбран
     };
 
     productClicked = (EO) => {
         this.props.cbSelected(this.props.code); 
+    }
+
+    edit = (EO) => {
+        EO.stopPropagation(); //чтобы кнопка не реагировала на выделение строки при ее клике
+        console.log('товар с кодом '+this.props.code+' готов к редактированию');
+        this.props.cbToEdit(this.props.code);
     }
 
     delete = (EO) => {
@@ -42,12 +49,13 @@ class Product extends React.Component {
                 <td className='ProductCell ProductPrice'>{this.props.price}</td>
                 <td className='ProductCell ProductUrl'>
                     <a href={this.props.url} target='_blank'>
-                        <img src={this.props.url} width='100px'/> 
+                        {"http://product_"+this.props.code} 
                     </a>
                 </td>
                 <td className='ProductCell ProductResidue'>{this.props.residue}</td>
                 <td className='ProductCell ProductDelete'>
-                    <button value={this.props.code} onClick={this.delete}>удалить</button>
+                    <button className='ProductBtn' value={'edit_'+this.props.code} onClick={this.edit}>редактировать</button>
+                    <button className='ProductBtn' value={'delete_'+this.props.code} onClick={this.delete}>удалить</button>
                 </td>
             </tr>
         )   

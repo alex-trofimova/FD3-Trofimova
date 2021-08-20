@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './IShop.css';
 
 import Product from './Product';
+import ProductSelectedInfo from './ProductSelectedInfo';
 
 class IShop extends React.Component{
 
@@ -24,12 +25,21 @@ class IShop extends React.Component{
     state = {
           productsList: this.props.products,  //массив товаров 
           selectedProductCode: null, //артикул выделяемого товара
-          deletedProductCode: null, //артикул товара, предназначенного для удаления
+          editedProductCode: null, //артикул редактируемого товара
+
+          //условие отображения содержимого под таблицей
+          //true - будет показана кнопка Добавить новый товар
+          //false - режим добавления/редактирования карточки товара
+          showNewProductButton: true,
+          
+          //условие в каком режиме: добавления (=1) или редактирования (=2)
+          //будет отображаться карточка товара
+          usedRegime: null, //первоначально никакой
+          
     }
 
     //описание функции для удаления товара по кнопке удалить
     productToRemove = (code) => {
-        this.setState( {deletedProductCode:code} ); //запоминается в состоянии артикул
         let sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
             (sureDelete)
             ? 
@@ -38,9 +48,20 @@ class IShop extends React.Component{
             this.setState( {productsList:this.state.productsList} )       
     }
 
+    //описание функции для редактирования товара по кнопке редактировать
+    productToEdit = (code) => {
+        this.setState( {editedProductCode:code, usedRegime: 2} );
+        console.log('перешли в режим №'+this.state.usedRegime+' для товара с кодом '+this.state.editedProductCode);
+    }
+
     //описание функции для выделения товара по клику на строку (кроме кнопки)
     productSelected = (code) => {
-        this.setState( {selectedProductCode:code} );
+        this.setState( {selectedProductCode:code, showNewProductButton:true } );
+    }
+
+    addNewProduct = () => {
+        this.setState( {showNewProductButton:false } );
+        console.log('давайте что-нибудь добавим');
     }
 
     render () {
@@ -50,11 +71,18 @@ class IShop extends React.Component{
                     residue={elem.residue} 
                     cbSelected={this.productSelected}
                     cbToRemove={this.productToRemove}
+                    cbToEdit={this.productToEdit}
                     selectedProductCode={this.state.selectedProductCode}
-                    deletedProductCode={this.state.deletedProductCode}
+                    editedProductCode={this.state.editedProductCode}
                     productsList={this.state.productsList} 
             />
         );
+
+        var ishopCardContentArr=this.state.productsList.filter( elem => 
+            elem.code==this.state.selectedProductCode )
+
+        var ishopCardContent=ishopCardContentArr[0];
+        
 
         return (
             <div className='IShopProductsList'>
@@ -70,7 +98,23 @@ class IShop extends React.Component{
                         </tr>        
                     </thead> 
                     <tbody className='IShopContent'>{ishopTableContent}</tbody>
-                </table>     
+                </table>
+                {
+                    (this.state.showNewProductButton) &&
+                    <button className='IShopNewProductBtn' value='add' 
+                        onClick={this.addNewProduct}>добавить новый товар
+                    </button>
+                }
+
+                {
+                    (this.state.selectedProductCode) &&
+                    <ProductSelectedInfo productName={ishopCardContent.productName}
+                        code={ishopCardContent.code} 
+                        price={ishopCardContent.price} 
+                        url={ishopCardContent.url} 
+                        residue={ishopCardContent.residue} 
+                    />
+                }     
             </div>    
         );
     }
