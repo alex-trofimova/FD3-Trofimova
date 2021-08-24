@@ -11,6 +11,7 @@ class Product extends React.Component {
         price: PropTypes.number.isRequired,
         url: PropTypes.string.isRequired,
         residue: PropTypes.number.isRequired,
+        
         cbSelected: PropTypes.func.isRequired, //callback-функция для выделения строки с товаром
         cbToRemove: PropTypes.func.isRequired, //callback-функция для удаления строки с товаром
         cbToEdit: PropTypes.func.isRequired, //callback-функция для редактирования соответствующего товара
@@ -24,7 +25,6 @@ class Product extends React.Component {
 
     edit = (EO) => {
         EO.stopPropagation(); //чтобы кнопка не реагировала на выделение строки при ее клике
-        console.log('товар с кодом '+this.props.code+' готов к редактированию');
         this.props.cbToEdit(this.props.code);
     }
 

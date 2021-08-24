@@ -1,0 +1,14 @@
+.ProductEditORAddTitle {
+    display: inline-block;
+    width: 140px;
+}
+
+.ProductSelectedInfoSpan {
+    color: blue;
+}
+
+.ProductEditORAddError {
+    display: inline-block;
+    margin-left: 5px;
+    color: red;
+}

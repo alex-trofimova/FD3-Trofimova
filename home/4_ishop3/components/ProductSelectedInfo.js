@@ -10,18 +10,28 @@ class ProductSelectedInfo extends React.Component {
         code: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
         url: PropTypes.string.isRequired,
-        residue: PropTypes.number.isRequired
+        residue: PropTypes.number.isRequired,
+
+        usedRegime: PropTypes.number.isRequired,
     };
 
     render() {
 
+        console.log(this.props.usedRegime);
+
         return (
             <div>
-                <h3>{this.props.productName}</h3>
-                <div>Артикул товара: <span className='ProductSelectedInfoSpan'>{this.props.code}</span></div>
-                <div>Ссылка: <span className='ProductSelectedInfoSpan'>{this.props.url}</span></div>
-                <div>Цена: <span className='ProductSelectedInfoSpan'>{this.props.price}</span></div>
-                <div>Остаток на складе: <span className='ProductSelectedInfoSpan'>{this.props.residue}</span></div>
+                {
+                    (this.props.usedRegime!=1)&&
+                    <div>
+                        <h3>{this.props.productName}</h3>
+                        <div>Артикул товара: <span className='ProductSelectedInfoSpan'>{this.props.code}</span></div>
+                        <div>Ссылка: <span className='ProductSelectedInfoSpan'>{this.props.url}</span></div>
+                        <div>Цена: <span className='ProductSelectedInfoSpan'>{this.props.price}</span></div>
+                        <div>Остаток на складе: <span className='ProductSelectedInfoSpan'>{this.props.residue}</span></div>
+                    </div>
+                }
+               
             </div>
             
         )

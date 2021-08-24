@@ -5,6 +5,7 @@ import './IShop.css';
 
 import Product from './Product';
 import ProductSelectedInfo from './ProductSelectedInfo';
+import ProductEditORAdd from './ProductEditORAdd';
 
 class IShop extends React.Component{
 
@@ -23,18 +24,15 @@ class IShop extends React.Component{
 
 
     state = {
-          productsList: this.props.products,  //массив товаров 
-          selectedProductCode: null, //артикул выделяемого товара
-          editedProductCode: null, //артикул редактируемого товара
+          productsList: this.props.products, //массив товаров
 
-          //условие отображения содержимого под таблицей
-          //true - будет показана кнопка Добавить новый товар
-          //false - режим добавления/редактирования карточки товара
-          showNewProductButton: true,
+          selectedProductCode: null, //артикул выделяемого товара
+
+          editedProductCode: null, //артикул редактируемого товара
           
-          //условие в каком режиме: добавления (=1) или редактирования (=2)
+          //условие в каком режиме: просмотра (=0) редактирования (=1) или добавления (=2)  
           //будет отображаться карточка товара
-          usedRegime: null, //первоначально никакой
+          usedRegime: 0, //первоначально режим просмотра
           
     }
 
@@ -48,27 +46,45 @@ class IShop extends React.Component{
             this.setState( {productsList:this.state.productsList} )       
     }
 
-    //описание функции для редактирования товара по кнопке редактировать
+    //описание функции для редактирования товара по кнопке "редактировать"
     productToEdit = (code) => {
-        this.setState( {editedProductCode:code, usedRegime: 2} );
-        console.log('перешли в режим №'+this.state.usedRegime+' для товара с кодом '+this.state.editedProductCode);
+        this.setState( {editedProductCode:code,
+                        selectedProductCode:code,
+                        usedRegime: 1} );
+    }
+
+    //описание функции для добавления нового товара по кнопке "добавить новый товар"
+    addNewProduct = () => {
+        this.setState( {usedRegime: 2} );
     }
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)
-    productSelected = (code) => {
-        this.setState( {selectedProductCode:code, showNewProductButton:true } );
+     productSelected = (code) => {
+        this.setState( {selectedProductCode:code, usedRegime:0 } );
     }
 
-    addNewProduct = () => {
-        this.setState( {showNewProductButton:false } );
-        console.log('давайте что-нибудь добавим');
+    //описание функции для сохранения изменений при редактировании товара по кнопке "сохранить"
+    productEditedToSave = (newElem) => {
+        let newProductsList = this.state.productsList.map(elem =>
+            (elem.code==newElem.code)
+            ? newElem
+            : elem
+        );
+        this.setState( {productsList:newProductsList, usedRegime:0 });
+    }
+
+    //описание функции для добавления нового товара в таблицу по кнопке "добавить"
+    productToAdd = (newElem) => {
+        this.state.productsList.push(newElem);
+        this.setState( {productsList:this.state.productsList, usedRegime:0 });
     }
 
     render () {
-        var ishopTableContent=this.state.productsList.map( elem =>
+
+        let ishopTableContent=this.state.productsList.map( elem =>
             <Product key={elem.code} productName={elem.productName}
                     code={elem.code} price={elem.price} url={elem.url}
-                    residue={elem.residue} 
+                    residue={elem.residue}
                     cbSelected={this.productSelected}
                     cbToRemove={this.productToRemove}
                     cbToEdit={this.productToEdit}
@@ -78,11 +94,20 @@ class IShop extends React.Component{
             />
         );
 
-        var ishopCardContentArr=this.state.productsList.filter( elem => 
-            elem.code==this.state.selectedProductCode )
+         //хэш с данными редактируемого товара
+        let editedProduct = this.state.productsList.find(elem => elem.code==this.state.editedProductCode);
+        //начальный (пустой фактически) хэш для добавления товара
+        let addingProduct = {
+            productName: '',
+            code: '',
+            price: 0,
+            url:'',
+            residue: 0,
+        }
 
-        var ishopCardContent=ishopCardContentArr[0];
-        
+        let editedORaddedProduct = (this.state.usedRegime==1)?editedProduct:addingProduct;
+
+        let ishopCardContent=this.state.productsList.find(elem => elem.code==this.state.selectedProductCode); 
 
         return (
             <div className='IShopProductsList'>
@@ -100,19 +125,28 @@ class IShop extends React.Component{
                     <tbody className='IShopContent'>{ishopTableContent}</tbody>
                 </table>
                 {
-                    (this.state.showNewProductButton) &&
+                    (this.state.usedRegime==0) 
+                    ?
                     <button className='IShopNewProductBtn' value='add' 
                         onClick={this.addNewProduct}>добавить новый товар
                     </button>
+                    :
+                    <ProductEditORAdd  
+                        editedORaddedProduct = {editedORaddedProduct}  
+                        usedRegime={this.state.usedRegime}
+                        cbSaveChanges={this.productEditedToSave} 
+                        cbAddProduct={this.productToAdd} 
+                    />
                 }
 
                 {
-                    (this.state.selectedProductCode) &&
+                    (this.state.usedRegime==0 && this.state.selectedProductCode) &&
                     <ProductSelectedInfo productName={ishopCardContent.productName}
                         code={ishopCardContent.code} 
                         price={ishopCardContent.price} 
                         url={ishopCardContent.url} 
-                        residue={ishopCardContent.residue} 
+                        residue={ishopCardContent.residue}
+                        usedRegime={this.state.usedRegime} 
                     />
                 }     
             </div>    
