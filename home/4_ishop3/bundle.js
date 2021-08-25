@@ -21266,7 +21266,6 @@ var IShop = function (_React$Component) {
             _this.setState({ usedRegime: 0, selectedProductCode: null });
         }, _this.checkForChanges = function (answer) {
             _this.setState({ wereChangesDone: answer });
-            console.log('изменения были, это ' + answer);
         }, _this.productSelected = function (code) {
             if (_this.state.usedRegime != 2 && _this.state.wereChangesDone == false) {
                 _this.setState({ selectedProductCode: code, usedRegime: 0 });
@@ -21289,6 +21288,10 @@ var IShop = function (_React$Component) {
 
 
     //описание функции для отмены действий по кнопке "отмена"
+
+
+    //описание функции для проверки были ли внесены изменения 
+    //- для блокирования кнопки "редактировать" и выделения строки, если это так
 
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)
@@ -21797,31 +21800,32 @@ var ProductEditORAdd = function (_React$Component) {
                 residue: Number(_this.state.residue)
             });
         }, _this.cancelAction = function () {
+            _this.setState({ wereAnyChages: false });
             _this.props.cbCancelAction();
-        }, _this.checkForChanges = function () {
-            _this.props.cbCheckForChanges(_this.state.wereAnyChages);
         }, _this.validate = function () {
-            _this.setState({ addBtnDisable: !_this.state.allValid });
-            _this.props.cbCheckForChanges(_this.state.wereAnyChages);
+            //запускаю cb функцию, к-рая сообщает родителю, что произошли изменения         
+            //Для редактирования работает - запрещает кнопки редактировать для всех строк
+            //для добавления не работает - в поля ничего нельзя ввести становится
+            //this.props.cbCheckForChanges(this.state.wereAnyChages);
 
             if (_this.state.productName == '') {
-                _this.setState({ productNameError: 'ERROR!', allValid: false });
-            } else _this.setState({ productNameError: '', allValid: true });
+                _this.setState({ productNameError: 'ERROR!', allValid: false, addBtnDisable: true });
+            } else _this.setState({ productNameError: '', allValid: true, addBtnDisable: false });
 
             if (_this.state.productCode == '') {
-                _this.setState({ codeError: 'ERROR!', allValid: false });
+                _this.setState({ codeError: 'ERROR!', allValid: false, addBtnDisable: true });
             } else _this.setState({ codeError: '' });
 
             if (_this.state.price == '' || _this.state.price == 0) {
-                _this.setState({ priceError: 'ERROR!', allValid: false });
+                _this.setState({ priceError: 'ERROR!', allValid: false, addBtnDisable: true });
             } else _this.setState({ priceError: '' });
 
             if (_this.state.url == '') {
-                _this.setState({ urlError: 'ERROR!', allValid: false });
+                _this.setState({ urlError: 'ERROR!', allValid: false, addBtnDisable: true });
             } else _this.setState({ urlError: '' });
 
             if (_this.state.residue == '') {
-                _this.setState({ residueError: 'ERROR!', allValid: false });
+                _this.setState({ residueError: 'ERROR!', allValid: false, addBtnDisable: true });
             } else _this.setState({ residueError: '' });
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }

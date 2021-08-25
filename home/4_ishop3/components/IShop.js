@@ -65,9 +65,10 @@ class IShop extends React.Component{
         this.setState( {usedRegime:0, selectedProductCode:null} );
     }
 
+    //описание функции для проверки были ли внесены изменения 
+    //- для блокирования кнопки "редактировать" и выделения строки, если это так
     checkForChanges = (answer) => {
         this.setState( {wereChangesDone: answer} );
-        console.log('изменения были, это '+answer);
     }
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)

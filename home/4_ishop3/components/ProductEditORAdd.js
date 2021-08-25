@@ -97,42 +97,42 @@ class ProductEditORAdd extends React.Component {
     }
 
     cancelAction = () => {
+        this.setState( {wereAnyChages:false});
         this.props.cbCancelAction();
     }
 
-    checkForChanges = () => {
-        this.props.cbCheckForChanges(this.state.wereAnyChages);
-    }
-
-    validate = () => {         
-        this.setState( {addBtnDisable: !this.state.allValid} );
-        this.props.cbCheckForChanges(this.state.wereAnyChages);
+    validate = () => {
+        //запускаю cb функцию, к-рая сообщает родителю, что произошли изменения         
+        //Для редактирования работает - запрещает кнопки редактировать для всех строк
+        //для добавления не работает - в поля ничего нельзя ввести становится
+        //this.props.cbCheckForChanges(this.state.wereAnyChages);
 
         if (this.state.productName=='') {
-            this.setState( {productNameError:'ERROR!', allValid:false} );
+            this.setState( {productNameError:'ERROR!', allValid:false, addBtnDisable:true} );
         }
-        else this.setState( {productNameError:'', allValid:true});
+        else this.setState( {productNameError:'', allValid:true, addBtnDisable:false});
 
         
         if (this.state.productCode=='') {
-            this.setState( {codeError:'ERROR!', allValid:false} );
+            this.setState( {codeError:'ERROR!', allValid:false, addBtnDisable:true} );
         }
         else this.setState( {codeError:''});
 
         if ((this.state.price=='') || (this.state.price==0)) {
-            this.setState( {priceError:'ERROR!', allValid:false} );
+            this.setState( {priceError:'ERROR!', allValid:false, addBtnDisable:true} );
         }
         else this.setState( {priceError:''});
 
         if (this.state.url=='') {
-            this.setState( {urlError:'ERROR!', allValid:false} );
+            this.setState( {urlError:'ERROR!', allValid:false, addBtnDisable:true} );
         }
         else this.setState( {urlError:''});
 
         if ((this.state.residue=='')) {
-            this.setState( {residueError:'ERROR!', allValid:false} );
+            this.setState( {residueError:'ERROR!', allValid:false, addBtnDisable:true} );
         }
         else this.setState( {residueError:''});
+
     }
 
 
