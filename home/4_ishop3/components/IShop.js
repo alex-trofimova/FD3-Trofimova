@@ -72,11 +72,10 @@ class IShop extends React.Component{
     }
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)
-     productSelected = (code) => {
-         if (this.state.usedRegime!=2 && (this.state.wereChangesDone==false)) {
+    productSelected = (code) => {
+        if (this.state.usedRegime!=2 && (this.state.wereChangesDone==false)) {
             this.setState( {selectedProductCode:code, usedRegime:0} );
-         }
-        
+        } 
     }
 
     //описание функции для сохранения изменений при редактировании товара по кнопке "сохранить"

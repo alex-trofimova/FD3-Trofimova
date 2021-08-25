@@ -21803,30 +21803,41 @@ var ProductEditORAdd = function (_React$Component) {
             _this.setState({ wereAnyChages: false });
             _this.props.cbCancelAction();
         }, _this.validate = function () {
-            //запускаю cb функцию, к-рая сообщает родителю, что произошли изменения         
-            //Для редактирования работает - запрещает кнопки редактировать для всех строк
-            //для добавления не работает - в поля ничего нельзя ввести становится
-            //this.props.cbCheckForChanges(this.state.wereAnyChages);
+
+            if (_this.props.usedRegime == 1) {
+                _this.props.cbCheckForChanges(_this.state.wereAnyChages);
+            }
+
+            var allValid = true;
 
             if (_this.state.productName == '') {
-                _this.setState({ productNameError: 'ERROR!', allValid: false, addBtnDisable: true });
-            } else _this.setState({ productNameError: '', allValid: true, addBtnDisable: false });
+                _this.setState({ productNameError: 'Поле не должно быть пустым!' });
+                allValid = false;
+            } else _this.setState({ productNameError: '' });
 
             if (_this.state.productCode == '') {
-                _this.setState({ codeError: 'ERROR!', allValid: false, addBtnDisable: true });
+                _this.setState({ codeError: 'Поле не должно быть пустым!' });
+                allValid = false;
             } else _this.setState({ codeError: '' });
 
             if (_this.state.price == '' || _this.state.price == 0) {
-                _this.setState({ priceError: 'ERROR!', allValid: false, addBtnDisable: true });
+                _this.setState({ priceError: 'Поле не должно быть пустым!' });
+                allValid = false;
             } else _this.setState({ priceError: '' });
 
             if (_this.state.url == '') {
-                _this.setState({ urlError: 'ERROR!', allValid: false, addBtnDisable: true });
+                _this.setState({ urlError: 'Поле не должно быть пустым!' });
+                allValid = false;
             } else _this.setState({ urlError: '' });
 
             if (_this.state.residue == '') {
-                _this.setState({ residueError: 'ERROR!', allValid: false, addBtnDisable: true });
+                _this.setState({ residueError: 'Поле не должно быть пустым!' });
+                allValid = false;
             } else _this.setState({ residueError: '' });
+
+            if (allValid == true) {
+                _this.setState({ allValid: true, addBtnDisable: false });
+            } else _this.setState({ allValid: false, addBtnDisable: true });
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -21981,8 +21992,8 @@ ProductEditORAdd.propTypes = {
 
     cbSaveChanges: _propTypes2.default.func.isRequired, //callback-функция для сохранения изменений о товаре
     cbAddProduct: _propTypes2.default.func.isRequired, //callback-функция для добавления нового товара
-    cbCancelAction: _propTypes2.default.func.isRequired,
-    cbCheckForChanges: _propTypes2.default.func.isRequired
+    cbCancelAction: _propTypes2.default.func.isRequired, //callback-функция для отмены действий
+    cbCheckForChanges: _propTypes2.default.func.isRequired //callback-функция для "извещения" о любых изменениях
 };
 exports.default = ProductEditORAdd;
 

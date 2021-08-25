@@ -12,8 +12,8 @@ class ProductEditORAdd extends React.Component {
 
         cbSaveChanges: PropTypes.func.isRequired, //callback-функция для сохранения изменений о товаре
         cbAddProduct: PropTypes.func.isRequired, //callback-функция для добавления нового товара
-        cbCancelAction: PropTypes.func.isRequired,
-        cbCheckForChanges: PropTypes.func.isRequired
+        cbCancelAction: PropTypes.func.isRequired, //callback-функция для отмены действий
+        cbCheckForChanges: PropTypes.func.isRequired //callback-функция для "извещения" о любых изменениях
     };
 
     state = {
@@ -30,7 +30,7 @@ class ProductEditORAdd extends React.Component {
         residueError:'',
         allValid:true,
 
-        addBtnDisable: true,
+        addBtnDisable:true,
 
         wereAnyChages:false
     }
@@ -102,37 +102,48 @@ class ProductEditORAdd extends React.Component {
     }
 
     validate = () => {
-        //запускаю cb функцию, к-рая сообщает родителю, что произошли изменения         
-        //Для редактирования работает - запрещает кнопки редактировать для всех строк
-        //для добавления не работает - в поля ничего нельзя ввести становится
-        //this.props.cbCheckForChanges(this.state.wereAnyChages);
+    
+        if (this.props.usedRegime==1) {
+            this.props.cbCheckForChanges(this.state.wereAnyChages);
+        }      
+
+        let allValid = true;
 
         if (this.state.productName=='') {
-            this.setState( {productNameError:'ERROR!', allValid:false, addBtnDisable:true} );
+            this.setState( {productNameError:'Поле не должно быть пустым!'} );
+            allValid=false;
         }
-        else this.setState( {productNameError:'', allValid:true, addBtnDisable:false});
+        else this.setState( {productNameError:''} );
 
         
         if (this.state.productCode=='') {
-            this.setState( {codeError:'ERROR!', allValid:false, addBtnDisable:true} );
+            this.setState( {codeError:'Поле не должно быть пустым!'} );
+            allValid=false;
         }
         else this.setState( {codeError:''});
 
         if ((this.state.price=='') || (this.state.price==0)) {
-            this.setState( {priceError:'ERROR!', allValid:false, addBtnDisable:true} );
+            this.setState( {priceError:'Поле не должно быть пустым!'} );
+            allValid=false;
         }
         else this.setState( {priceError:''});
 
         if (this.state.url=='') {
-            this.setState( {urlError:'ERROR!', allValid:false, addBtnDisable:true} );
+            this.setState( {urlError:'Поле не должно быть пустым!'} );
+            allValid=false;
         }
         else this.setState( {urlError:''});
 
         if ((this.state.residue=='')) {
-            this.setState( {residueError:'ERROR!', allValid:false, addBtnDisable:true} );
+            this.setState( {residueError:'Поле не должно быть пустым!'} );
+            allValid=false;
         }
         else this.setState( {residueError:''});
 
+        if (allValid==true) {
+            this.setState( {allValid:true, addBtnDisable:false} );
+        }
+        else this.setState( {allValid:false, addBtnDisable:true} );
     }
 
 
