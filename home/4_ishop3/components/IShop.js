@@ -33,10 +33,12 @@ class IShop extends React.Component{
           //условие в каком режиме: просмотра (=0) редактирования (=1) или добавления (=2)  
           //будет отображаться карточка товара
           usedRegime: 0, //первоначально режим просмотра
+
+          wereChangesDone: false,
           
     }
 
-    //описание функции для удаления товара по кнопке удалить
+    //описание функции для удаления товара по кнопке "удалить"
     productToRemove = (code) => {
         let sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
             (sureDelete)
@@ -55,12 +57,25 @@ class IShop extends React.Component{
 
     //описание функции для добавления нового товара по кнопке "добавить новый товар"
     addNewProduct = () => {
-        this.setState( {usedRegime: 2} );
+        this.setState( {usedRegime:2, selectedProductCode:null, wereChangesDone:false} );
+    }
+
+    //описание функции для отмены действий по кнопке "отмена"
+    cancelAction = () => {
+        this.setState( {usedRegime:0, selectedProductCode:null} );
+    }
+
+    checkForChanges = (answer) => {
+        this.setState( {wereChangesDone: answer} );
+        console.log('изменения были, это '+answer);
     }
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)
      productSelected = (code) => {
-        this.setState( {selectedProductCode:code, usedRegime:0 } );
+         if (this.state.usedRegime!=2 && (this.state.wereChangesDone==false)) {
+            this.setState( {selectedProductCode:code, usedRegime:0} );
+         }
+        
     }
 
     //описание функции для сохранения изменений при редактировании товара по кнопке "сохранить"
@@ -70,7 +85,7 @@ class IShop extends React.Component{
             ? newElem
             : elem
         );
-        this.setState( {productsList:newProductsList, usedRegime:0 });
+        this.setState( {productsList:newProductsList, usedRegime:0, wereChangesDone:false} );
     }
 
     //описание функции для добавления нового товара в таблицу по кнопке "добавить"
@@ -90,7 +105,9 @@ class IShop extends React.Component{
                     cbToEdit={this.productToEdit}
                     selectedProductCode={this.state.selectedProductCode}
                     editedProductCode={this.state.editedProductCode}
-                    productsList={this.state.productsList} 
+                    productsList={this.state.productsList}
+                    usedRegime={this.state.usedRegime}
+                    wereChangesDone={this.state.wereChangesDone} 
             />
         );
 
@@ -100,9 +117,9 @@ class IShop extends React.Component{
         let addingProduct = {
             productName: '',
             code: '',
-            price: 0,
+            price: '',
             url:'',
-            residue: 0,
+            residue: '',
         }
 
         let editedORaddedProduct = (this.state.usedRegime==1)?editedProduct:addingProduct;
@@ -132,10 +149,13 @@ class IShop extends React.Component{
                     </button>
                     :
                     <ProductEditORAdd  
-                        editedORaddedProduct = {editedORaddedProduct}  
+                        editedORaddedProduct={editedORaddedProduct}
+                        editedProductCode={this.state.editedProductCode} 
                         usedRegime={this.state.usedRegime}
                         cbSaveChanges={this.productEditedToSave} 
                         cbAddProduct={this.productToAdd} 
+                        cbCancelAction={this.cancelAction}
+                        cbCheckForChanges={this.checkForChanges} 
                     />
                 }
 

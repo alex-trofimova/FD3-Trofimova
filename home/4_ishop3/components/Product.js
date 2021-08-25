@@ -11,6 +11,9 @@ class Product extends React.Component {
         price: PropTypes.number.isRequired,
         url: PropTypes.string.isRequired,
         residue: PropTypes.number.isRequired,
+
+        usedRegime: PropTypes.number.isRequired,
+        wereChangesDone: PropTypes.bool.isRequired,
         
         cbSelected: PropTypes.func.isRequired, //callback-функция для выделения строки с товаром
         cbToRemove: PropTypes.func.isRequired, //callback-функция для удаления строки с товаром
@@ -24,8 +27,8 @@ class Product extends React.Component {
     }
 
     edit = (EO) => {
-        EO.stopPropagation(); //чтобы кнопка не реагировала на выделение строки при ее клике
-        this.props.cbToEdit(this.props.code);
+            EO.stopPropagation(); //чтобы кнопка не реагировала на выделение строки при ее клике
+            this.props.cbToEdit(this.props.code); 
     }
 
     delete = (EO) => {
@@ -54,8 +57,10 @@ class Product extends React.Component {
                 </td>
                 <td className='ProductCell ProductResidue'>{this.props.residue}</td>
                 <td className='ProductCell ProductDelete'>
-                    <button className='ProductBtn' value={'edit_'+this.props.code} onClick={this.edit}>редактировать</button>
-                    <button className='ProductBtn' value={'delete_'+this.props.code} onClick={this.delete}>удалить</button>
+                    <button className='ProductBtn' value={'edit_'+this.props.code} onClick={this.edit}
+                            disabled={(this.props.usedRegime==2) || (this.props.wereChangesDone)}>редактировать</button>
+                    <button className='ProductBtn' value={'delete_'+this.props.code} onClick={this.delete} 
+                            disabled={(this.props.usedRegime==1) || (this.props.usedRegime==2) }>удалить</button>
                 </td>
             </tr>
         )   

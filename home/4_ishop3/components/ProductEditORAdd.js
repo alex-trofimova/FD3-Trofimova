@@ -6,11 +6,14 @@ import './ProductEditORAdd.css';
 class ProductEditORAdd extends React.Component {
     static propTypes = {
         editedORaddedProduct: PropTypes.object,
+        editedProductCode: PropTypes.number,
 
         usedRegime: PropTypes.number.isRequired,
 
         cbSaveChanges: PropTypes.func.isRequired, //callback-функция для сохранения изменений о товаре
         cbAddProduct: PropTypes.func.isRequired, //callback-функция для добавления нового товара
+        cbCancelAction: PropTypes.func.isRequired,
+        cbCheckForChanges: PropTypes.func.isRequired
     };
 
     state = {
@@ -25,82 +28,112 @@ class ProductEditORAdd extends React.Component {
         priceError:'',
         urlError:'',
         residueError:'',
-        allValid:true
+        allValid:true,
+
+        addBtnDisable: true,
+
+        wereAnyChages:false
     }
 
-   
+    componentDidUpdate(prevProps) {
+        if (this.props.editedORaddedProduct !== prevProps.editedORaddedProduct) {
+          this.setState( {  productName:this.props.editedORaddedProduct.productName,
+                            productCode:this.props.editedORaddedProduct.code,
+                            price:this.props.editedORaddedProduct.price,
+                            url:this.props.editedORaddedProduct.url,
+                            residue:this.props.editedORaddedProduct.residue
+                         }   );
+        }
+      }
 
     nameChanged = (EO) => { 
-        this.setState( {productName:EO.target.value} );
+        this.setState( {productName:EO.target.value, wereAnyChages:true}, () => {
+            this.validate();
+        } );
     }
 
     codeChanged = (EO) => { 
-        this.setState( {productCode:Number(EO.target.value)} );
+        this.setState( {productCode:EO.target.value, wereAnyChages:true}, () => {
+            this.validate();
+        } );
     }
 
     priceChanged = (EO) => { 
-        this.setState( {price:Number(EO.target.value)} );
+        this.setState( {price:EO.target.value, wereAnyChages:true}, () => {
+            this.validate();
+        } );
     }
 
     urlChanged = (EO) => { 
-        this.setState( {url:EO.target.value} );
+        this.setState( {url:EO.target.value, wereAnyChages:true}, () => {
+            this.validate();
+        } );
     }
 
     residueChanged = (EO) => { 
-        this.setState( {residue:Number(EO.target.value)} );
+        this.setState( {residue:EO.target.value, wereAnyChages:true}, () => {
+            this.validate();
+        } );
     }
 
     save = () => {
         this.props.cbSaveChanges({ ...this.props.editedORaddedProduct,
             productName: this.state.productName,
-            code: this.state.productCode,
-            price: this.state.price,
+            code: Number(this.state.productCode),
+            price: Number(this.state.price),
             url: this.state.url,
-            residue: this.state.residue,
+            residue: Number(this.state.residue),
         });
     }
 
     add = () => {
         this.props.cbAddProduct({ 
             productName: this.state.productName,
-            code: this.state.productCode,
-            price: this.state.price,
+            code: Number(this.state.productCode),
+            price: Number(this.state.price),
             url: this.state.url,
-            residue: this.state.residue,
+            residue: Number(this.state.residue),
         });
     }
 
-    validate = () => { 
+    cancelAction = () => {
+        this.props.cbCancelAction();
+    }
+
+    checkForChanges = () => {
+        this.props.cbCheckForChanges(this.state.wereAnyChages);
+    }
+
+    validate = () => {         
+        this.setState( {addBtnDisable: !this.state.allValid} );
+        this.props.cbCheckForChanges(this.state.wereAnyChages);
 
         if (this.state.productName=='') {
-            this.setState ( {productNameError:'ERROR!', allValid:false} );
+            this.setState( {productNameError:'ERROR!', allValid:false} );
         }
+        else this.setState( {productNameError:'', allValid:true});
+
         
-        else this.setState ( {productNameError:''});
-        
+        if (this.state.productCode=='') {
+            this.setState( {codeError:'ERROR!', allValid:false} );
+        }
+        else this.setState( {codeError:''});
+
         if ((this.state.price=='') || (this.state.price==0)) {
-            this.setState ( {priceError:'ERROR!', allValid:false} );
+            this.setState( {priceError:'ERROR!', allValid:false} );
         }
-        else this.setState ( {priceError:''});
+        else this.setState( {priceError:''});
 
         if (this.state.url=='') {
-            this.setState ( {urlError:'ERROR!', allValid:false} );
+            this.setState( {urlError:'ERROR!', allValid:false} );
         }
-        else this.setState ( {urlError:''});
+        else this.setState( {urlError:''});
 
-        if ((this.state.residue=='') || (this.state.residue==0)) {
-            this.setState ( {residueError:'ERROR!', allValid:false } );
+        if ((this.state.residue=='')) {
+            this.setState( {residueError:'ERROR!', allValid:false} );
         }
-        else this.setState ( {residueError:''});
-
-        if ((this.state.productNameError=='') && (this.state.priceError=='') && 
-            (this.state.urlError=='') && (this.state.residueError=='')) {
-                this.setState ( {allValid:true})
-        }
+        else this.setState( {residueError:''});
     }
-                        
-                
-
 
 
     render() {
@@ -118,17 +151,26 @@ class ProductEditORAdd extends React.Component {
                     <span className='ProductEditORAddTitle'>Название товара: </span>
                     <input type='text' name='productName' className='ProductEditORAddInput'
                             value={this.state.productName} 
-                            onChange={this.nameChanged} onBlur={this.validate}
+                            onChange={this.nameChanged} 
                     />
                     <span className='ProductEditORAddError'>{this.state.productNameError}</span>
                 </div>
 
                 <div>
                     <span className='ProductEditORAddTitle'>Артикул: </span>
-                    <input type='text' name='code' className='ProductEditORAddInput' 
+                    {
+                        (this.props.usedRegime==1)
+                        ?
+                        <input type='text' name='code' className='ProductEditORAddInput' 
+                            value={this.state.productCode} disabled='false'
+                        />
+                        :
+                        <input type='text' name='code' className='ProductEditORAddInput' 
                             value={this.state.productCode} 
-                            onChange={this.codeChanged} disabled='true'
-                    />
+                            onChange={this.codeChanged}
+                        />
+                    }
+                    
                     <span className='ProductEditORAddError'>{this.state.codeError}</span>
                 </div>
 
@@ -136,7 +178,7 @@ class ProductEditORAdd extends React.Component {
                     <span className='ProductEditORAddTitle'>Цена: </span>
                     <input type='text' name='price' className='ProductEditORAddInput' 
                             value={this.state.price} 
-                            onChange={this.priceChanged} onBlur={this.validate}
+                            onChange={this.priceChanged}
                     />
                     <span className='ProductEditORAddError'>{this.state.priceError}</span>
                 </div>
@@ -145,7 +187,7 @@ class ProductEditORAdd extends React.Component {
                     <span className='ProductEditORAddTitle'>Ссылка: </span>
                     <input type='text' name='url' className='ProductEditORAddInput'
                             value={this.state.url}
-                            onChange={this.urlChanged} onBlur={this.validate}
+                            onChange={this.urlChanged}
                     />
                     <span className='ProductEditORAddError'>{this.state.urlError}</span>
                 </div>
@@ -154,7 +196,7 @@ class ProductEditORAdd extends React.Component {
                     <span className='ProductEditORAddTitle'>Остаток на складе: </span>
                     <input type='text' name='residue' className='ProductEditORAddInput'
                             value={this.state.residue}
-                            onChange={this.residueChanged} onBlur={this.validate}
+                            onChange={this.residueChanged}
                     />
                     <span className='ProductEditORAddError'>{this.state.residueError}</span>
                 </div>
@@ -164,10 +206,10 @@ class ProductEditORAdd extends React.Component {
                         (this.props.usedRegime==1)
                         ?
                         <button className='ProductEditORAddBtn' value='save' onClick={this.save}
-                                disabled={!this.state.allValid}>сохранить</button>
+                                disabled={this.state.allValid==false}>сохранить</button>
                         :
                         <button className='ProductEditORAddBtn' value='add' onClick={this.add}
-                                disabled={!this.state.allValid}>добавить</button>
+                                disabled={this.state.addBtnDisable}>добавить</button>
                     }
                     <button className='ProductEditORAddBtn' value='cancel' onClick={this.cancelAction}>отмена</button>
                 </div>

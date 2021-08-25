@@ -21246,9 +21246,11 @@ var IShop = function (_React$Component) {
 
             //условие в каком режиме: просмотра (=0) редактирования (=1) или добавления (=2)  
             //будет отображаться карточка товара
-            usedRegime: 0 //первоначально режим просмотра
+            usedRegime: 0, //первоначально режим просмотра
 
-            //описание функции для удаления товара по кнопке удалить
+            wereChangesDone: false
+
+            //описание функции для удаления товара по кнопке "удалить"
         }, _this.productToRemove = function (code) {
             var sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
             sureDelete ? _this.setState({ productsList: _this.state.productsList.filter(function (elem) {
@@ -21259,14 +21261,21 @@ var IShop = function (_React$Component) {
                 selectedProductCode: code,
                 usedRegime: 1 });
         }, _this.addNewProduct = function () {
-            _this.setState({ usedRegime: 2 });
+            _this.setState({ usedRegime: 2, selectedProductCode: null, wereChangesDone: false });
+        }, _this.cancelAction = function () {
+            _this.setState({ usedRegime: 0, selectedProductCode: null });
+        }, _this.checkForChanges = function (answer) {
+            _this.setState({ wereChangesDone: answer });
+            console.log('изменения были, это ' + answer);
         }, _this.productSelected = function (code) {
-            _this.setState({ selectedProductCode: code, usedRegime: 0 });
+            if (_this.state.usedRegime != 2 && _this.state.wereChangesDone == false) {
+                _this.setState({ selectedProductCode: code, usedRegime: 0 });
+            }
         }, _this.productEditedToSave = function (newElem) {
             var newProductsList = _this.state.productsList.map(function (elem) {
                 return elem.code == newElem.code ? newElem : elem;
             });
-            _this.setState({ productsList: newProductsList, usedRegime: 0 });
+            _this.setState({ productsList: newProductsList, usedRegime: 0, wereChangesDone: false });
         }, _this.productToAdd = function (newElem) {
             _this.state.productsList.push(newElem);
             _this.setState({ productsList: _this.state.productsList, usedRegime: 0 });
@@ -21277,6 +21286,9 @@ var IShop = function (_React$Component) {
 
 
     //описание функции для добавления нового товара по кнопке "добавить новый товар"
+
+
+    //описание функции для отмены действий по кнопке "отмена"
 
 
     //описание функции для выделения товара по клику на строку (кроме кнопки)
@@ -21302,7 +21314,9 @@ var IShop = function (_React$Component) {
                     cbToEdit: _this2.productToEdit,
                     selectedProductCode: _this2.state.selectedProductCode,
                     editedProductCode: _this2.state.editedProductCode,
-                    productsList: _this2.state.productsList
+                    productsList: _this2.state.productsList,
+                    usedRegime: _this2.state.usedRegime,
+                    wereChangesDone: _this2.state.wereChangesDone
                 });
             });
 
@@ -21314,9 +21328,9 @@ var IShop = function (_React$Component) {
             var addingProduct = {
                 productName: '',
                 code: '',
-                price: 0,
+                price: '',
                 url: '',
-                residue: 0
+                residue: ''
             };
 
             var editedORaddedProduct = this.state.usedRegime == 1 ? editedProduct : addingProduct;
@@ -21382,9 +21396,12 @@ var IShop = function (_React$Component) {
                     '\u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u043E\u0432\u044B\u0439 \u0442\u043E\u0432\u0430\u0440'
                 ) : _react2.default.createElement(_ProductEditORAdd2.default, {
                     editedORaddedProduct: editedORaddedProduct,
+                    editedProductCode: this.state.editedProductCode,
                     usedRegime: this.state.usedRegime,
                     cbSaveChanges: this.productEditedToSave,
-                    cbAddProduct: this.productToAdd
+                    cbAddProduct: this.productToAdd,
+                    cbCancelAction: this.cancelAction,
+                    cbCheckForChanges: this.checkForChanges
                 }),
                 this.state.usedRegime == 0 && this.state.selectedProductCode && _react2.default.createElement(_ProductSelectedInfo2.default, { productName: ishopCardContent.productName,
                     code: ishopCardContent.code,
@@ -21515,12 +21532,14 @@ var Product = function (_React$Component) {
                     { className: 'ProductCell ProductDelete' },
                     _react2.default.createElement(
                         'button',
-                        { className: 'ProductBtn', value: 'edit_' + this.props.code, onClick: this.edit },
+                        { className: 'ProductBtn', value: 'edit_' + this.props.code, onClick: this.edit,
+                            disabled: this.props.usedRegime == 2 || this.props.wereChangesDone },
                         '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C'
                     ),
                     _react2.default.createElement(
                         'button',
-                        { className: 'ProductBtn', value: 'delete_' + this.props.code, onClick: this.delete },
+                        { className: 'ProductBtn', value: 'delete_' + this.props.code, onClick: this.delete,
+                            disabled: this.props.usedRegime == 1 || this.props.usedRegime == 2 },
                         '\u0443\u0434\u0430\u043B\u0438\u0442\u044C'
                     )
                 )
@@ -21537,6 +21556,9 @@ Product.propTypes = {
     price: _propTypes2.default.number.isRequired,
     url: _propTypes2.default.string.isRequired,
     residue: _propTypes2.default.number.isRequired,
+
+    usedRegime: _propTypes2.default.number.isRequired,
+    wereChangesDone: _propTypes2.default.bool.isRequired,
 
     cbSelected: _propTypes2.default.func.isRequired, //callback-функция для выделения строки с товаром
     cbToRemove: _propTypes2.default.func.isRequired, //callback-функция для удаления строки с товаром
@@ -21733,38 +21755,62 @@ var ProductEditORAdd = function (_React$Component) {
             priceError: '',
             urlError: '',
             residueError: '',
-            allValid: true
+            allValid: true,
+
+            addBtnDisable: true,
+
+            wereAnyChages: false
         }, _this.nameChanged = function (EO) {
-            _this.setState({ productName: EO.target.value });
+            _this.setState({ productName: EO.target.value, wereAnyChages: true }, function () {
+                _this.validate();
+            });
         }, _this.codeChanged = function (EO) {
-            _this.setState({ productCode: Number(EO.target.value) });
+            _this.setState({ productCode: EO.target.value, wereAnyChages: true }, function () {
+                _this.validate();
+            });
         }, _this.priceChanged = function (EO) {
-            _this.setState({ price: Number(EO.target.value) });
+            _this.setState({ price: EO.target.value, wereAnyChages: true }, function () {
+                _this.validate();
+            });
         }, _this.urlChanged = function (EO) {
-            _this.setState({ url: EO.target.value });
+            _this.setState({ url: EO.target.value, wereAnyChages: true }, function () {
+                _this.validate();
+            });
         }, _this.residueChanged = function (EO) {
-            _this.setState({ residue: Number(EO.target.value) });
+            _this.setState({ residue: EO.target.value, wereAnyChages: true }, function () {
+                _this.validate();
+            });
         }, _this.save = function () {
             _this.props.cbSaveChanges(_extends({}, _this.props.editedORaddedProduct, {
                 productName: _this.state.productName,
-                code: _this.state.productCode,
-                price: _this.state.price,
+                code: Number(_this.state.productCode),
+                price: Number(_this.state.price),
                 url: _this.state.url,
-                residue: _this.state.residue
+                residue: Number(_this.state.residue)
             }));
         }, _this.add = function () {
             _this.props.cbAddProduct({
                 productName: _this.state.productName,
-                code: _this.state.productCode,
-                price: _this.state.price,
+                code: Number(_this.state.productCode),
+                price: Number(_this.state.price),
                 url: _this.state.url,
-                residue: _this.state.residue
+                residue: Number(_this.state.residue)
             });
+        }, _this.cancelAction = function () {
+            _this.props.cbCancelAction();
+        }, _this.checkForChanges = function () {
+            _this.props.cbCheckForChanges(_this.state.wereAnyChages);
         }, _this.validate = function () {
+            _this.setState({ addBtnDisable: !_this.state.allValid });
+            _this.props.cbCheckForChanges(_this.state.wereAnyChages);
 
             if (_this.state.productName == '') {
                 _this.setState({ productNameError: 'ERROR!', allValid: false });
-            } else _this.setState({ productNameError: '' });
+            } else _this.setState({ productNameError: '', allValid: true });
+
+            if (_this.state.productCode == '') {
+                _this.setState({ codeError: 'ERROR!', allValid: false });
+            } else _this.setState({ codeError: '' });
 
             if (_this.state.price == '' || _this.state.price == 0) {
                 _this.setState({ priceError: 'ERROR!', allValid: false });
@@ -21774,17 +21820,25 @@ var ProductEditORAdd = function (_React$Component) {
                 _this.setState({ urlError: 'ERROR!', allValid: false });
             } else _this.setState({ urlError: '' });
 
-            if (_this.state.residue == '' || _this.state.residue == 0) {
+            if (_this.state.residue == '') {
                 _this.setState({ residueError: 'ERROR!', allValid: false });
             } else _this.setState({ residueError: '' });
-
-            if (_this.state.productNameError == '' && _this.state.priceError == '' && _this.state.urlError == '' && _this.state.residueError == '') {
-                _this.setState({ allValid: true });
-            }
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(ProductEditORAdd, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+            if (this.props.editedORaddedProduct !== prevProps.editedORaddedProduct) {
+                this.setState({ productName: this.props.editedORaddedProduct.productName,
+                    productCode: this.props.editedORaddedProduct.code,
+                    price: this.props.editedORaddedProduct.price,
+                    url: this.props.editedORaddedProduct.url,
+                    residue: this.props.editedORaddedProduct.residue
+                });
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
 
@@ -21806,7 +21860,7 @@ var ProductEditORAdd = function (_React$Component) {
                     ),
                     _react2.default.createElement('input', { type: 'text', name: 'productName', className: 'ProductEditORAddInput',
                         value: this.state.productName,
-                        onChange: this.nameChanged, onBlur: this.validate
+                        onChange: this.nameChanged
                     }),
                     _react2.default.createElement(
                         'span',
@@ -21822,9 +21876,11 @@ var ProductEditORAdd = function (_React$Component) {
                         { className: 'ProductEditORAddTitle' },
                         '\u0410\u0440\u0442\u0438\u043A\u0443\u043B: '
                     ),
-                    _react2.default.createElement('input', { type: 'text', name: 'code', className: 'ProductEditORAddInput',
+                    this.props.usedRegime == 1 ? _react2.default.createElement('input', { type: 'text', name: 'code', className: 'ProductEditORAddInput',
+                        value: this.state.productCode, disabled: 'false'
+                    }) : _react2.default.createElement('input', { type: 'text', name: 'code', className: 'ProductEditORAddInput',
                         value: this.state.productCode,
-                        onChange: this.codeChanged, disabled: 'true'
+                        onChange: this.codeChanged
                     }),
                     _react2.default.createElement(
                         'span',
@@ -21842,7 +21898,7 @@ var ProductEditORAdd = function (_React$Component) {
                     ),
                     _react2.default.createElement('input', { type: 'text', name: 'price', className: 'ProductEditORAddInput',
                         value: this.state.price,
-                        onChange: this.priceChanged, onBlur: this.validate
+                        onChange: this.priceChanged
                     }),
                     _react2.default.createElement(
                         'span',
@@ -21860,7 +21916,7 @@ var ProductEditORAdd = function (_React$Component) {
                     ),
                     _react2.default.createElement('input', { type: 'text', name: 'url', className: 'ProductEditORAddInput',
                         value: this.state.url,
-                        onChange: this.urlChanged, onBlur: this.validate
+                        onChange: this.urlChanged
                     }),
                     _react2.default.createElement(
                         'span',
@@ -21878,7 +21934,7 @@ var ProductEditORAdd = function (_React$Component) {
                     ),
                     _react2.default.createElement('input', { type: 'text', name: 'residue', className: 'ProductEditORAddInput',
                         value: this.state.residue,
-                        onChange: this.residueChanged, onBlur: this.validate
+                        onChange: this.residueChanged
                     }),
                     _react2.default.createElement(
                         'span',
@@ -21892,12 +21948,12 @@ var ProductEditORAdd = function (_React$Component) {
                     this.props.usedRegime == 1 ? _react2.default.createElement(
                         'button',
                         { className: 'ProductEditORAddBtn', value: 'save', onClick: this.save,
-                            disabled: !this.state.allValid },
+                            disabled: this.state.allValid == false },
                         '\u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C'
                     ) : _react2.default.createElement(
                         'button',
                         { className: 'ProductEditORAddBtn', value: 'add', onClick: this.add,
-                            disabled: !this.state.allValid },
+                            disabled: this.state.addBtnDisable },
                         '\u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C'
                     ),
                     _react2.default.createElement(
@@ -21915,11 +21971,14 @@ var ProductEditORAdd = function (_React$Component) {
 
 ProductEditORAdd.propTypes = {
     editedORaddedProduct: _propTypes2.default.object,
+    editedProductCode: _propTypes2.default.number,
 
     usedRegime: _propTypes2.default.number.isRequired,
 
     cbSaveChanges: _propTypes2.default.func.isRequired, //callback-функция для сохранения изменений о товаре
-    cbAddProduct: _propTypes2.default.func.isRequired //callback-функция для добавления нового товара
+    cbAddProduct: _propTypes2.default.func.isRequired, //callback-функция для добавления нового товара
+    cbCancelAction: _propTypes2.default.func.isRequired,
+    cbCheckForChanges: _propTypes2.default.func.isRequired
 };
 exports.default = ProductEditORAdd;
 
