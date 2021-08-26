@@ -43,7 +43,8 @@ class IShop extends React.Component{
         let sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
             (sureDelete)
             ? 
-            this.setState( {productsList:this.state.productsList.filter(elem => elem.code!=code)} )
+            this.setState( {productsList:this.state.productsList.filter(elem => elem.code!=code),
+                            selectedProductCode:null, editedProductCode:null} )
             :
             this.setState( {productsList:this.state.productsList} )       
     }

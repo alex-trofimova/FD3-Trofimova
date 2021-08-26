@@ -21255,7 +21255,8 @@ var IShop = function (_React$Component) {
             var sureDelete = confirm('Вы уверены, что хотите удалить этот товар?');
             sureDelete ? _this.setState({ productsList: _this.state.productsList.filter(function (elem) {
                     return elem.code != code;
-                }) }) : _this.setState({ productsList: _this.state.productsList });
+                }),
+                selectedProductCode: null, editedProductCode: null }) : _this.setState({ productsList: _this.state.productsList });
         }, _this.productToEdit = function (code) {
             _this.setState({ editedProductCode: code,
                 selectedProductCode: code,
