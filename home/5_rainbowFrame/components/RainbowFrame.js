@@ -8,17 +8,18 @@ class RainbowFrame extends React.Component {
   };
   
   render() {
-    let setOfFrames = this.props.colors.map((elem,index) => 
-    <div key={index} style={{border:"solid 4px "+elem, position: 'absolute', 
-                  left: 5*index+'px', top: 5*index+'px',
-                  width: (400-10*index)+'px', 
-                  height: (200-10*index)+'px'}}/>
-    );
+
+    let z=this.props.children;
+    this.props.colors.forEach( elem => {
+      z = <div style={{border:"solid 4px "+elem, textAlign:'center', 
+                        fontSize:'24px', fontWeight:'bold'}} 
+                className={(elem!=this.props.colors[0])?'oneFrame_all':'oneFrame_last'} 
+          >{z}</div>
+    } );
     
     return (
       <div className="Rainbow">
-        {setOfFrames} 
-        <p className='RainbowContent'>{this.props.children}</p>
+        {z}
       </div>
     );
   }
