@@ -2,6 +2,8 @@
 import PropTypes from 'prop-types';
 
 import MobileClient from './MobileClient';
+import AddOrEditClient from './AddOrEditClient';
+
 import {mobileCompanyEvents} from './events';
 
 import './MobileCompany.css';
@@ -21,6 +23,8 @@ class MobileCompany extends React.PureComponent {
       })
     ),
   };
+  
+  
 
   state = {
     name: this.props.name, 
@@ -32,9 +36,9 @@ class MobileCompany extends React.PureComponent {
 
     //хэш для добавления нового клиента, изначально пустой
     addingClient: {
-      id: '', 
+      id: 0, 
       fam: '', im: '', otch:'',
-      balance: '', status: '',
+      balance: 0, status: '',
     },
 
     //хэш для редактирования выбранного клиента, изначально пустой
@@ -46,12 +50,19 @@ class MobileCompany extends React.PureComponent {
   componentDidMount = () => {
     mobileCompanyEvents.addListener('EClientToDelete',this.clientToRemove);
     mobileCompanyEvents.addListener('EClientToEdit',this.clientToEdit);
+    mobileCompanyEvents.addListener('EClientToAdd',this.clientToAdd);
+    mobileCompanyEvents.addListener('EClientToCancel',this.cancel);
+    mobileCompanyEvents.addListener('EClientToSaveChanges',this.clientToSaveChanges);
+    
   };
 
   //"отписка" от них
   componentWillUnmount = () => {
     mobileCompanyEvents.removeListener('EClientToDelete',this.clientToRemove);
     mobileCompanyEvents.removeListener('EClientToEdit',this.clientToEdit);
+    mobileCompanyEvents.removeListener('EClientToAdd',this.clientToAdd);
+    mobileCompanyEvents.removeListener('EClientToCancel',this.cancel);
+    mobileCompanyEvents.removeListener('EClientToSaveChanges',this.clientToSaveChanges);
   };
 
   //изменение имени компании по кнопке
@@ -82,7 +93,25 @@ class MobileCompany extends React.PureComponent {
 
   //описание функции отображения карточки добавления клиента при нажатии кнопки "Добавить нового клиента"
   showAddClientCard = () => {
-    this.setState( {usedRegime:2} )
+    //предварительно составляю массив из "использованных" id
+    let usedId=[];
+    let newClients=[...this.state.clients];
+    newClients.forEach( (elem, index) => 
+      usedId[index]=elem.id
+    );
+    //переменная с id добавляемого клиента
+    let newClientId;
+    do {
+      //функция выбора случайного числа из некоторого диапазон [n,m]
+      let getId=(m,n)=>Math.floor(Math.random()*(m-n+1))+n;
+
+      newClientId=getId(100,130);//здесь указываю в каком диапазоне (для проверки делала узким)
+    }
+    while ( usedId.indexOf(newClientId)!=-1 );
+
+    let newAddingClient={...this.state.addingClient};
+    newAddingClient.id=newClientId;
+    this.setState( {usedRegime:2, addingClient:newAddingClient} );
   }
 
   //описание функции для удаления клиента по событию EClientToDelete
@@ -90,91 +119,32 @@ class MobileCompany extends React.PureComponent {
     this.setState( {clients:this.state.clients.filter(elem => elem.id!=id)} );       
   }
 
-   //описание функции для удаления клиента по событию EClientToEdit
-  clientToEdit = (id) => {
-        this.setState( {
-          usedRegime:1, 
-          editingClient:this.state.clients.find(elem => elem.id==id)
-        } );      
-  }
-  
-  //использование ref для работы с полями формы
-  idTextRef = null;
-  famTextRef = null;
-  imTextRef = null;
-  otchTextRef = null;
-  balanceTextRef = null;
+   //описание функции для редактирования клиента по событию EClientToEdit
+  clientToEdit = (info) => {
+    this.setState( {editingClient:info, usedRegime:1} );      
+  };
 
-  setIdTextRef = (ref) => {
-    this.idTextRef=ref;
-  };
-  setFamTextRef = (ref) => {
-    this.famTextRef=ref;
-  };
-  setImTextRef = (ref) => {
-    this.imTextRef=ref;
-  };
-  setOtchTextRef = (ref) => {
-    this.otchTextRef=ref;
-  };
-  setBalanceTextRef = (ref) => {
-    this.balanceTextRef=ref;
+  //описание функции для добавления в список нового клиента по событию EClientToAdd
+  clientToAdd = (hash) => {
+    let newClients=[...this.state.clients];
+    newClients.push(hash);
+    this.setState({clients:newClients, usedRegime:0});
+        
   };
   
- //описание функции для добавления клиента по кнопке "Добавить"
-  addNewClient = () => {
-      let newAddingClient={};
-      newAddingClient.id=Number(this.idTextRef.value);
-      newAddingClient.fam=this.famTextRef.value;
-      newAddingClient.im=this.imTextRef.value;
-      newAddingClient.otch=this.otchTextRef.value;
-      newAddingClient.balance=Number(this.balanceTextRef.value);
-
-      if (newAddingClient.balance>0){
-        newAddingClient.status='active';
-      }
-      else newAddingClient.status='blocked';
-
-      let newClients=[...this.state.clients];
-      newClients.push(newAddingClient);
-      this.setState({clients:newClients, usedRegime:0});
-  }
-
-  //описание функции для сохранения изменений выбранного для редактирования клиента по кнопке "сохранить изменения"
-  saveEditedClient = () => {
-    let changed=false;
-    let EditedClient={};
-      EditedClient.id=Number(this.idTextRef.value);
-      EditedClient.fam=this.famTextRef.value;
-      EditedClient.im=this.imTextRef.value;
-      EditedClient.otch=this.otchTextRef.value;
-      EditedClient.balance=Number(this.balanceTextRef.value);
-      if (EditedClient.balance>0){
-        EditedClient.status='active';
-      }
-      else EditedClient.status='blocked';
-
-      let newClients=[...this.state.clients];
-      let edClient=newClients.find(elem => elem.id==EditedClient.id);
-
-      //если ничего не поменяли в полях, то не нужно рендериться MobileClient
-      if (EditedClient.fam!=edClient.fam || EditedClient.im!=edClient.im || EditedClient.otch!=edClient.otch
-        || EditedClient.balance!=edClient.balance || EditedClient.status!=edClient.status) {
-          let edIndex=newClients.findIndex(elem => elem.id==EditedClient.id);
-          newClients.splice(edIndex,1,EditedClient);
-          changed=true;
-        }
-      
-      if ( changed ) {
-        this.setState({clients:newClients});
-      }
-      this.setState({usedRegime:0});  
-  }
-
-  //описание функции для отмены действий по кнопке "Отмена"
-  cancelAction = () => {
+  //описание функции для отмены действий по событию EClientToCancel
+  cancel = () => {
     this.setState( {usedRegime:0} );
-  }
+  };
+
+  //описание функции для сохранения изменений редактируемого клиента по событию EClientToSaveChanges
+  clientToSaveChanges = (hash) => {
+    let newClients=[...this.state.clients];
+    let edIndex=newClients.findIndex(elem => elem.id==hash.id);
+    newClients.splice(edIndex,1,hash);
+    this.setState({clients:newClients, usedRegime:0});
+  };
+  
   
   render() {
 
@@ -224,60 +194,10 @@ class MobileCompany extends React.PureComponent {
             Добавить клиента
           </button>
           :
-          <div className="AddOrEditClient_card">
-            <h3>
-                { (this.state.usedRegime==1)
-                  ? 'Редактировать выбранного клиента'
-                  : 'Добавить нового клиента'
-                }
-              </h3>
-            <div>
-              <span className='AddOrEditClient_title'>ID клиента: </span>
-              <input type='text' name='clientId' className='AddOrEditClient_input'
-                    ref={this.setIdTextRef}
-                    defaultValue={(this.state.usedRegime==1)?this.state.editingClient.id:''}
-              />
-            </div>
-            <div>
-              <span className='AddOrEditClient_title'>Фамилия: </span>
-              <input type='text' name='clientFam' className='AddOrEditClient_input'
-                    ref={this.setFamTextRef}
-                    defaultValue={(this.state.usedRegime==1)?this.state.editingClient.fam:''}
-              />
-            </div>
-            <div>
-              <span className='AddOrEditClient_title'>Имя: </span>
-              <input type='text' name='clientIm' className='AddOrEditClient_input'
-                    ref={this.setImTextRef}
-                    defaultValue={(this.state.usedRegime==1)?this.state.editingClient.im:''}
-              />
-            </div>
-            <div>
-              <span className='AddOrEditClient_title'>Отчество: </span>
-              <input type='text' name='clientOtch' className='AddOrEditClient_input'
-                    ref={this.setOtchTextRef}
-                    defaultValue={(this.state.usedRegime==1)?this.state.editingClient.otch:''}
-              />
-            </div>
-            <div>
-              <span className='AddOrEditClient_title'>Баланс: </span>
-              <input type='text' name='clientBalance' className='AddOrEditClient_input'
-                    ref={this.setBalanceTextRef}
-                    defaultValue={(this.state.usedRegime==1)?this.state.editingClient.balance:''}
-              />
-            </div>
-            
-            { (this.state.usedRegime==1)
-              ? <button className='AddOrEditClient_btn' value='add' onClick={this.saveEditedClient}>
-                    Сохранить изменения
-                  </button>
-              : <button className='AddOrEditClient_btn' value='add' onClick={this.addNewClient}>
-                    Добавить
-                </button>
-            }
-            
-            <button className='AddOrEditClient_btn' value='cancel' onClick={this.cancelAction}>Отмена</button>
-          </div>
+          <AddOrEditClient 
+            editingOrNewClient={(this.state.usedRegime==1)?this.state.editingClient:this.state.addingClient}
+            usedRegime={this.state.usedRegime}
+          />
         }
       </div>
 

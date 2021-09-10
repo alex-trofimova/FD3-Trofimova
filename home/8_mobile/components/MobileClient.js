@@ -26,12 +26,12 @@ class MobileClient extends React.PureComponent {
     this.setState( {info:newProps.info} );
   };
 
-  delete = (EO) => {
+  delete = () => {
     mobileCompanyEvents.emit('EClientToDelete',this.state.info.id);
   }
 
-  edit = (EO) => {
-    mobileCompanyEvents.emit('EClientToEdit',this.state.info.id);
+  edit = () => {
+    mobileCompanyEvents.emit('EClientToEdit',this.state.info);
   }
 
   render() {
