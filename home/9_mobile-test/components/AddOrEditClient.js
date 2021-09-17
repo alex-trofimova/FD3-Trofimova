@@ -129,7 +129,7 @@ class AddOrEdiClient extends React.PureComponent {
             </div>
             
             { (this.state.usedRegime==1)
-              ? <button className='AddOrEditClient_btn SaveChangesBtn' value='add' onClick={this.saveEditedClient}>
+              ? <button className='AddOrEditClient_btn SaveChangesBtn' value='save' onClick={this.saveEditedClient}>
                     Сохранить изменения
                   </button>
               : <button className='AddOrEditClient_btn AddClientBtn' value='add' onClick={this.addNewClient}>

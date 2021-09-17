@@ -1,0 +1,901 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа MobileCompany AllBtn 1`] = `
+<div
+  className="MobileCompany"
+>
+  <input
+    onClick={[Function]}
+    type="button"
+    value="Velcom"
+  />
+  <input
+    onClick={[Function]}
+    type="button"
+    value="MTS"
+  />
+  <div
+    className="MobileCompanyName"
+  >
+    Компания: 
+    Velcom
+  </div>
+  <div>
+    <button
+      className="MobileCompanyFilter_btn AllBtn"
+      onClick={[Function]}
+      value="all"
+    >
+      Все
+    </button>
+    <button
+      className="MobileCompanyFilter_btn ActiveBtn"
+      onClick={[Function]}
+      value="active"
+    >
+      Активные
+    </button>
+    <button
+      className="MobileCompanyFilter_btn BlockedBtn"
+      onClick={[Function]}
+      value="blocked"
+    >
+      Заблокированные
+    </button>
+  </div>
+  <table
+    className="MobileCompanyClientsList"
+  >
+    <thead
+      className="HeaderContent"
+    >
+      <tr
+        className="TableHeader"
+      >
+        <th
+          className="HeaderCell"
+        >
+          Фамилия
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Имя
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Отчество
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Баланс
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Статус
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Редактировать
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Удалить
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="ClientsListContent"
+    >
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Иванов
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Иван
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Иванович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          200
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Сидоров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Сидор
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Сидорович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          250
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Петров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Пётр
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Петрович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          180
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Григорьев
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Григорий
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Григорьевич
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          -220
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          blocked
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="MobileCompanyNewClient_btn AddNewClientBtn"
+    onClick={[Function]}
+    value="add"
+  >
+    Добавить клиента
+  </button>
+</div>
+`;
+
+exports[`работа MobileCompany AllBtn 2`] = `
+<div
+  className="MobileCompany"
+>
+  <input
+    onClick={[Function]}
+    type="button"
+    value="Velcom"
+  />
+  <input
+    onClick={[Function]}
+    type="button"
+    value="MTS"
+  />
+  <div
+    className="MobileCompanyName"
+  >
+    Компания: 
+    Velcom
+  </div>
+  <div>
+    <button
+      className="MobileCompanyFilter_btn AllBtn"
+      onClick={[Function]}
+      value="all"
+    >
+      Все
+    </button>
+    <button
+      className="MobileCompanyFilter_btn ActiveBtn"
+      onClick={[Function]}
+      value="active"
+    >
+      Активные
+    </button>
+    <button
+      className="MobileCompanyFilter_btn BlockedBtn"
+      onClick={[Function]}
+      value="blocked"
+    >
+      Заблокированные
+    </button>
+  </div>
+  <table
+    className="MobileCompanyClientsList"
+  >
+    <thead
+      className="HeaderContent"
+    >
+      <tr
+        className="TableHeader"
+      >
+        <th
+          className="HeaderCell"
+        >
+          Фамилия
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Имя
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Отчество
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Баланс
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Статус
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Редактировать
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Удалить
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="ClientsListContent"
+    >
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Иванов
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Иван
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Иванович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          200
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Сидоров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Сидор
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Сидорович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          250
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Петров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Пётр
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Петрович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          180
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Григорьев
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Григорий
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Григорьевич
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          -220
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          blocked
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="MobileCompanyNewClient_btn AddNewClientBtn"
+    onClick={[Function]}
+    value="add"
+  >
+    Добавить клиента
+  </button>
+</div>
+`;
+
+exports[`работа MobileCompany AllBtn 3`] = `
+<div
+  className="MobileCompany"
+>
+  <input
+    onClick={[Function]}
+    type="button"
+    value="Velcom"
+  />
+  <input
+    onClick={[Function]}
+    type="button"
+    value="MTS"
+  />
+  <div
+    className="MobileCompanyName"
+  >
+    Компания: 
+    Velcom
+  </div>
+  <div>
+    <button
+      className="MobileCompanyFilter_btn AllBtn"
+      onClick={[Function]}
+      value="all"
+    >
+      Все
+    </button>
+    <button
+      className="MobileCompanyFilter_btn ActiveBtn"
+      onClick={[Function]}
+      value="active"
+    >
+      Активные
+    </button>
+    <button
+      className="MobileCompanyFilter_btn BlockedBtn"
+      onClick={[Function]}
+      value="blocked"
+    >
+      Заблокированные
+    </button>
+  </div>
+  <table
+    className="MobileCompanyClientsList"
+  >
+    <thead
+      className="HeaderContent"
+    >
+      <tr
+        className="TableHeader"
+      >
+        <th
+          className="HeaderCell"
+        >
+          Фамилия
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Имя
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Отчество
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Баланс
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Статус
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Редактировать
+        </th>
+        <th
+          className="HeaderCell"
+        >
+          Удалить
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="ClientsListContent"
+    >
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Иванов
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Иван
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Иванович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          200
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Сидоров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Сидор
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Сидорович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          250
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Петров
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Пётр
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Петрович
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          180
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          active
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+      <tr
+        className="MobileClient"
+      >
+        <td
+          className="ClientCell ClientFam"
+        >
+          Григорьев
+        </td>
+        <td
+          className="ClientCell ClientIm"
+        >
+          Григорий
+        </td>
+        <td
+          className="ClientCell ClientOtch"
+        >
+          Григорьевич
+        </td>
+        <td
+          className="ClientCell ClientBalance"
+        >
+          -220
+        </td>
+        <td
+          className="ClientCell ClientStatus"
+        >
+          blocked
+        </td>
+        <td
+          className="ClientCell ClientEdit"
+        >
+          <button
+            className="ClientBtn EditBtn"
+            onClick={[Function]}
+          >
+            редактировать
+          </button>
+        </td>
+        <td
+          className="ClientCell ClientDelete"
+        >
+          <button
+            className="ClientBtn DeleteBtn"
+            onClick={[Function]}
+          >
+            удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    className="MobileCompanyNewClient_btn AddNewClientBtn"
+    onClick={[Function]}
+    value="add"
+  >
+    Добавить клиента
+  </button>
+</div>
+`;

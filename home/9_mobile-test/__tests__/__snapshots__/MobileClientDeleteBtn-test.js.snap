@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа MobileClient DeleteBtn 1`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="ClientCell ClientFam"
+  >
+    Сидоров
+  </td>
+  <td
+    className="ClientCell ClientIm"
+  >
+    Сидор
+  </td>
+  <td
+    className="ClientCell ClientOtch"
+  >
+    Сидорович
+  </td>
+  <td
+    className="ClientCell ClientBalance"
+  >
+    250
+  </td>
+  <td
+    className="ClientCell ClientStatus"
+  >
+    active
+  </td>
+  <td
+    className="ClientCell ClientEdit"
+  >
+    <button
+      className="ClientBtn EditBtn"
+      onClick={[Function]}
+    >
+      редактировать
+    </button>
+  </td>
+  <td
+    className="ClientCell ClientDelete"
+  >
+    <button
+      className="ClientBtn DeleteBtn"
+      onClick={[Function]}
+    >
+      удалить
+    </button>
+  </td>
+</tr>
+`;
+
+exports[`работа MobileClient DeleteBtn 2`] = `null`;
