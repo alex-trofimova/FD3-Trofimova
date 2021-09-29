@@ -1,11 +1,17 @@
-//Описание Классов
+//Описание Интерфейса
+interface IScalable {
+    getName():string;
+    getScale():number
+}
 
-class Product {
+//Описание Классов
+//1.
+class Apple implements IScalable{
     name:string;
     scale:number;
 
-    constructor(_name:string, _scale:number) {
-        this.name=_name; 
+    constructor(_scale:number) {
+        this.name='apple'; 
         this.scale=_scale; 
     }
 
@@ -18,28 +24,34 @@ class Product {
     }  
 }
 
-class Apple extends Product {
+//2.
+class Tomato implements IScalable{
+    name:string;
+    scale:number;
 
-    constructor(_name:string, _scale:number) {
-        super(_name, _scale); //вызов конструктора класса-предка
+    constructor(_scale:number) {
+        this.name='tomato'; 
+        this.scale=_scale; 
     }
+
+    getName():string {
+        return this.name;
+    }
+
+    getScale():number {
+        return this.scale;
+    }  
 }
 
-class Tomato extends Product {
-
-    constructor(_name:string, _scale:number) {
-        super(_name, _scale); //вызов конструктора класса-предка
-    }
-}
-
+//3.
 class Scales {
-    productsArr:Array<Product>;
+    productsArr:IScalable[];
 
     constructor() {
         this.productsArr=[]; 
     }
 
-    add(_product:Product){
+    add(_product:IScalable){
         this.productsArr.push(_product);
     }
 
@@ -54,7 +66,7 @@ class Scales {
 
     getSumScale():number{
         let sumScale=0;
-        for (let i=0; i<this.productsArr.length; i++ ) {
+        for (let i:number=0; i<this.productsArr.length; i++ ) {
             let productScale=this.productsArr[i].getScale();
             sumScale+=productScale;
         }
@@ -64,10 +76,10 @@ class Scales {
 
 //Создание объектов Классов
 let scales:Scales=new Scales();
-let greenApple:Apple=new Apple("green apple", 80);
-let redApple:Apple=new Apple("red apple", 75);
-let smallTomato:Tomato=new Tomato("small tomato", 30);
-let bigTomato:Tomato=new Tomato("big tomato", 90);
+let greenApple:Apple=new Apple(90);
+let redApple:Apple=new Apple(75);
+let smallTomato:Tomato=new Tomato(30);
+let bigTomato:Tomato=new Tomato(90);
 
 //Вызов функций 
 scales.add(greenApple);
