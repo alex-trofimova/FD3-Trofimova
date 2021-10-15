@@ -5,6 +5,9 @@ import './Header.css';
 import Logo from './../../assets/logo.png';
 import { Link  } from 'react-router-dom';
 
+//components
+import CartInfo from '../CartInfo/CartInfo';
+
 class Header extends React.PureComponent {
 
   static propTypes = {
@@ -20,6 +23,9 @@ class Header extends React.PureComponent {
               <Link to="/">
                 <img src={Logo} alt="Varta" />
               </Link>
+            </div>
+            <div className="Header_cartInfo">
+              <CartInfo />
             </div>
           </div>
           

@@ -21,6 +21,9 @@ import Page_Cart from './pages/Page_Cart/Page_Cart';
 
 import store  from './redux/createStore';
 
+// default styles
+import './default.css';
+
 // store.dispatch(
 //   {
 //     type: 'SET_PRODUCTS',

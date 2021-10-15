@@ -1,0 +1,32 @@
+[
+    {
+        "id": 9537,
+        "title": "Аккумулятор Varta Blue 44",
+        "type": "автоаккумуляторы",
+        "price": 159,
+        "capacity": 44
+    },
+
+    {
+        "id": 560409054,
+        "title": "Аккумулятор Varta Blue 60",
+        "type": "автоаккумуляторы",
+        "price": 189,
+        "capacity": 60
+    },
+
+    {
+        "id": 725103115722,
+        "title": "Аккумулятор Varta Promotive Silver",
+        "type": "грузовые аккумуляторы",
+        "price": 712,
+        "capacity": 225
+    },
+    {
+        "id": 512011012,
+        "title": "Аккумулятор VARTA Moto 12 Ah 160A",
+        "type": "мото аккумулятоы",
+        "price": 109,
+        "capacity": 12
+      }
+]

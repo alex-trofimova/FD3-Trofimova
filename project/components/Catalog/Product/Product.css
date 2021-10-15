@@ -1,0 +1,8 @@
+﻿.Product {
+    border: 1px solid green;
+    width: 32%;
+}
+
+li {
+    list-style-type: none;
+}

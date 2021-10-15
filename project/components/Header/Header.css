@@ -10,6 +10,13 @@
 }
 .Header_logo {
   position: absolute;
-  top: 50%; left: 10px;
+  top: 50%; 
+  left: 10px;
   transform: translateY(-50%);
+}
+
+.Header_cartInfo {
+  position: absolute;
+  right: 10%;
+  height: 100%;
 }

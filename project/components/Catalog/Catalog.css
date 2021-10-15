@@ -1,1 +1,22 @@
-﻿
+﻿.Catalog {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.Catalog_wrapper {
+    display: flex;
+}
+
+.Catalog_filter {
+    width: 20%;
+    border: 1px solid blue;
+}
+
+.Catalog_productsResults {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
