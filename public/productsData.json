@@ -241,21 +241,348 @@
         "width": 195
     },
 
+    {
+        "id": 560901068512,
+        "title": "Аккумулятор Varta Silver AGM 60 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202011/cat_t1605091948rd4960e.jpg",
+        "type": "автоаккумуляторы",
+        "price": 389,
+        "inStock": 12,
+        "capacity": 60,
+        "voltage": 12,
+        "current": 680,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
 
     {
         "id": 725103115722,
-        "title": "Аккумулятор Varta Promotive Silver",
+        "title": "Аккумулятор Varta Promotive Silver 225 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/4980a41498120143.jpg",
         "type": "грузовые аккумуляторы",
         "price": 712,
-        "inStock": 10,
-        "capacity": 225
+        "inStock": 4,
+        "capacity": 225,
+        "voltage": 12,
+        "current": 1150,
+        "length": 518,
+        "height": 242,
+        "width": 276
     },
+
+    {
+        "id": 710901120,
+        "title": "Аккумулятор Varta Promotive AGM 210 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614168485r21407d.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 1469,
+        "inStock": 3,
+        "capacity": 210,
+        "voltage": 12,
+        "current": 1200,
+        "length": 518,
+        "height": 242,
+        "width": 276
+    },
+
+    {
+        "id": 680108100722,
+        "title": "Аккумулятор Varta Promotive Silver 180 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/c114981498120143.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 180,
+        "voltage": 12,
+        "current": 1000,
+        "length": 513,
+        "height": 223,
+        "width": 223
+    },
+
+    {
+        "id": 640400080,
+        "title": "Аккумулятор Varta Promotive Blue 140 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/6ee4c11498120143.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 140,
+        "voltage": 12,
+        "current": 1000,
+        "length": 513,
+        "height": 223,
+        "width": 189
+    },
+
+    {
+        "id": 740500120652,
+        "title": "Аккумулятор Varta Promotive EFB 240 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201803/cat_t1522057694re26575.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 796,
+        "inStock": 2,
+        "capacity": 240,
+        "voltage": 12,
+        "current": 1200,
+        "length": 518,
+        "height": 242,
+        "width": 276
+    },
+
+    {
+        "id": 690500105652,
+        "title": "Аккумулятор Varta Promotive EFB 190 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201803/cat_t1522054436rcc9b38.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 190,
+        "voltage": 12,
+        "current": 1050,
+        "length": 513,
+        "height": 223,
+        "width": 223
+    },
+
+    {
+        "id": 680033110742,
+        "title": "Аккумулятор Varta Promotive Black 180 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201803/cat_t1522052021r36000b.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 535,
+        "inStock": 3,
+        "capacity": 180,
+        "voltage": 12,
+        "current": 1100,
+        "length": 480,
+        "height": 210,
+        "width": 225
+    },
+
+    {
+        "id": 610404068742,
+        "title": "Аккумулятор Varta Promotive Black 110 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614167749re3bcf6.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 352,
+        "inStock": 4,
+        "capacity": 110,
+        "voltage": 12,
+        "current": 680,
+        "length": 347,
+        "height": 234,
+        "width": 173
+    },
+
+    {
+        "id": 690033120742,
+        "title": "Аккумулятор Varta Promotive Black 190 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614167919rc3eb63.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 526,
+        "inStock": 3,
+        "capacity": 190,
+        "voltage": 12,
+        "current": 1200,
+        "length": 513,
+        "height": 223,
+        "width": 223
+    },
+
+    {
+        "id": 700038105,
+        "title": "Аккумулятор Varta Promotive Black 200 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614168314r5ab4f2.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 200,
+        "voltage": 12,
+        "current": 1050,
+        "length": 518,
+        "height": 242,
+        "width": 276
+    },
+
+    {
+        "id": 720018115742,
+        "title": "Аккумулятор Varta Promotive Black 220 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614172401r467f3c.jpg",
+        "type": "грузовые аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 220,
+        "voltage": 12,
+        "current": 1150,
+        "length": 518,
+        "height": 242,
+        "width": 276
+    },
+
     {
         "id": 512011012,
-        "title": "Аккумулятор VARTA Moto 12 Ah 160A",
-        "type": "мото аккумуляторы",
+        "title": "Аккумулятор VARTA Moto 12 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503595188ra1e190.jpg",
+        "type": "мотоциклетные аккумуляторы",
         "price": 109,
         "inStock": 10,
-        "capacity": 12
-      }
+        "capacity": 12,
+        "voltage": 12,
+        "current": 160,
+        "length": 134,
+        "height": 160,
+        "width": 82
+    },
+
+    {
+        "id": 514011014,
+        "title": "Аккумулятор VARTA Moto 14 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503595112r7418a1.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 121,
+        "inStock": 10,
+        "capacity": 14,
+        "voltage": 12,
+        "current": 190,
+        "length": 134,
+        "height": 167,
+        "width": 90
+    },
+
+    {
+        "id": 504011002,
+        "title": "Аккумулятор VARTA Moto 4 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503594256r250d90.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 62,
+        "inStock": 6,
+        "capacity": 4,
+        "voltage": 12,
+        "current": 190,
+        "length": 120,
+        "height": 93,
+        "width": 71
+    },
+
+    {
+        "id": 9299,
+        "title": "Аккумулятор VARTA Moto 18 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503594984r9b1918.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 18,
+        "voltage": 12,
+        "current": 200,
+        "length": 181,
+        "height": 162,
+        "width": 92
+    },
+
+    {
+        "id": 1004014001,
+        "title": "Аккумулятор VARTA Moto 6 Volt 4 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/5de89a1498119726.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 4,
+        "voltage": 12,
+        "current": 10,
+        "length": 71,
+        "height": 96,
+        "width": 71
+    },
+
+    {
+        "id": 9325,
+        "title": "Аккумулятор VARTA Moto AGM 10 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503593429r84c8b1.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 134,
+        "inStock": 8,
+        "capacity": 10,
+        "voltage": 12,
+        "current": 150,
+        "length": 150,
+        "height": 130,
+        "width": 88
+    },
+
+    {
+        "id": 511901014,
+        "title": "Аккумулятор VARTA Moto AGM 11 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503593362r75c98e.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 154,
+        "inStock": 8,
+        "capacity": 11,
+        "voltage": 12,
+        "current": 160,
+        "length": 150,
+        "height": 105,
+        "width": 88
+    },
+
+    {
+        "id": 512901019,
+        "title": "Аккумулятор VARTA Moto AGM 12 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503593218rf9f245.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 151,
+        "inStock": 7,
+        "capacity": 12,
+        "voltage": 12,
+        "current": 215,
+        "length": 150,
+        "height": 130,
+        "width": 70
+    },
+
+    {
+        "id": 9333,
+        "title": "Аккумулятор VARTA Moto AGM 18 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503591498r5190e8.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 189,
+        "inStock": 9,
+        "capacity": 18,
+        "voltage": 12,
+        "current": 250,
+        "length": 177,
+        "height": 156,
+        "width": 88
+    },
+
+    {
+        "id":  9335,
+        "title": "Аккумулятор VARTA Moto AGM 3 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503591387r1b4bb6.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 3,
+        "voltage": 12,
+        "current": 40,
+        "length": 114,
+        "height": 85,
+        "width": 48
+    },
+
+    {
+        "id":  15737,
+        "title": "Аккумулятор VARTA Moto POWERSPORTS GEL 19 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/af7bd51498120154.jpg",
+        "type": "мотоциклетные аккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 19,
+        "voltage": 12,
+        "current": 210,
+        "length": 150,
+        "height": 161,
+        "width": 87
+    }
 ]

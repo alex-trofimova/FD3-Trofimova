@@ -54,6 +54,10 @@ class Catalog extends React.PureComponent {
     this.props.dispatch( products_filter_by_type('грузовые аккумуляторы') );    
   }
 
+  showMotoAkum = () => {
+    this.props.dispatch( products_filter_by_type('мотоциклетные аккумуляторы') );    
+  }
+
   searchByQuery = (EO) => {
     let query = EO.target.value;
     this.props.dispatch( all_products_show() );
@@ -86,6 +90,7 @@ class Catalog extends React.PureComponent {
               <option value='all'>Все</option>
               <option value='автоаккумуляторы'>Автоаккумуляторы</option>
               <option value='грузовые аккумуляторы'>Грузовые аккумуляторы</option>
+              <option value='мотоциклетные аккумуляторы'>Мотоциклетные аккумуляторы</option>
             </select>
             <br/>
             <br/>
