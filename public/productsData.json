@@ -45,21 +45,6 @@
     },
 
     {
-        "id": 565411057,
-        "title": "Аккумулятор Varta Blue Dynamic 65 Ah",
-        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614164546re3f819.jpg",
-        "type": "автоаккумуляторы",
-        "price": 0,
-        "inStock": 0,
-        "capacity": 65,
-        "voltage": 12,
-        "current": 570,
-        "length": 232,
-        "height": 225,
-        "width": 173
-    },
-
-    {
         "id": 13986,
         "title": "Аккумулятор VARTA 40 Ah",
         "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/55024c1498119898.jpg",
