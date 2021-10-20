@@ -1,6 +1,6 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-import ProductCard from './../../components/ProductCard/ProductCard';
+import ProductCard from './../../components/Catalog/ProductCard/ProductCard';
 
 import './Page_Product.css';
 

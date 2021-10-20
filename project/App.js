@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux';
 
+import { store } from './redux/createStore';
+
 // components
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -19,63 +21,54 @@ import Page_Catalog from './pages/Page_Catalog/Page_Catalog';
 import Page_Product from './pages/Page_Product/Page_Product';
 import Page_Cart from './pages/Page_Cart/Page_Cart';
 
-import store  from './redux/createStore';
-
 // default styles
 import './default.css';
-
-// store.dispatch(
-//   {
-//     type: 'SET_PRODUCTS',
-//     payload: 'Oil',
-//   }
-// )
 
 ReactDOM.render(
   <div>
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
+          <Switch>
 
-          <Route exact path="/" render={() => (
+            <Route exact path="/" render={() => (
+              <div>
+                <Header /> 
+                <Page_Home />
+                <Footer /> 
+              </div> 
+            )}
+            />
+
+            <Route path="/catalog" render={() => (
             <div>
-              <Header /> 
-              <Page_Home />
+              <Header />
+              <Page_Catalog />
               <Footer /> 
-            </div> 
-          )}
-          />
+            </div>
+            )}
+            />
 
-          <Route path="/catalog" render={() => (
-          <div>
-            <Header />
-            <Page_Catalog />
-            <Footer /> 
-          </div>
-          )}
-          />
+            <Route path="/product" render={() => (
+            <div>
+              <Header />
+              <Page_Product />
+              <Footer /> 
+            </div>
+            )}
+            />
 
-          <Route path="/product" render={() => (
-          <div>
-            <Header />
-            <Page_Product />
-            <Footer /> 
-          </div>
-          )}
-          />
+            <Route path="/cart" render={() => (
+            <div>
+              <Header />
+              <Page_Cart />
+              <Footer /> 
+            </div>
+            )}
+            />
 
-          <Route path="/cart" render={() => (
-          <div>
-            <Header />
-            <Page_Cart />
-            <Footer /> 
-          </div>
-          )}
-          />
-
-        </Switch>
+          </Switch>
       </BrowserRouter>
     </Provider>
   </div> 
   
-, document.getElementById('container') );
+, document.getElementById('root') );

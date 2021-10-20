@@ -3,6 +3,10 @@
     width: 32%;
 }
 
+ul {
+    cursor: pointer;
+}
+
 li {
     list-style-type: none;
 }

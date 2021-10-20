@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 //import PropTypes from 'prop-types';
 
+import { Link  } from 'react-router-dom';
+
 import './Categories.css';
 
 class Categories extends React.PureComponent {
@@ -13,8 +15,9 @@ class Categories extends React.PureComponent {
 
     return (
       <div className="Categories">
-        
-        
+        <Link to="/cart">
+          <div>В корзину</div>
+        </Link>
       </div>
     )
     ;

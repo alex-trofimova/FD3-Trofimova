@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import CatalogReducer from "./CatalogReducer";
 import CartReducer from "./CartReducer";
+import ProductCardReducer from "./ProductCardReducer";
 
 let combinedReducer=combineReducers({
-    // редьюсер CatalogReducer отвечает за раздел state под именем catalog
     catalog: CatalogReducer,
-    cart: CartReducer, 
-    // + другие редьюсеры
+    cart: CartReducer,
+    product: ProductCardReducer, 
 });
 
 export default combinedReducer;

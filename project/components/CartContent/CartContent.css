@@ -1,1 +1,8 @@
-﻿
+﻿.CartContent {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.CartContent_table {
+    width: 100%;
+}

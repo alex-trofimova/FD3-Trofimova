@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withRouter } from 'react-router-dom'
+
 import {connect} from 'react-redux';
 
 import {  products_create, 
@@ -18,7 +20,6 @@ class Catalog extends React.PureComponent {
 
   static propTypes = {
     initialListOfProducts: PropTypes.array.isRequired, //передано из родительского компонента
-    //catalog: PropTypes.array.isRequired, // передано из Redux
     catalog: PropTypes.object.isRequired, // передано из Redux
   };
 
@@ -74,7 +75,7 @@ class Catalog extends React.PureComponent {
   
     return (
       <div className="Catalog">
-        <h2>Каталог товаров</h2>
+        <h2>Каталог товаров</h2> 
         <div className="Catalog_wrapper">
           <div className="Catalog_filter">
           <br/>
@@ -110,6 +111,5 @@ const mapStateToProps = (state) => ({
   catalog: state.catalog,
 });
 
-export default connect(mapStateToProps)(Catalog);
-//export default Catalog;
-
+export default withRouter(connect(mapStateToProps)(Catalog));
+//export default connect(mapStateToProps)(Catalog);
