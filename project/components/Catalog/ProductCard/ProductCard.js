@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { product_add_to_cart, product_change_quantity_by_one } from '../../../redux/CartAC'
 
-
 import './ProductCard.css';
 
 class ProductCard extends React.PureComponent {

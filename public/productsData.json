@@ -1,21 +1,246 @@
 [
     {
         "id": 9537,
-        "title": "Аккумулятор Varta Blue 44",
+        "title": "Аккумулятор VARTA Blue 44 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/0bf9001498119822.jpg",
         "type": "автоаккумуляторы",
         "price": 159,
         "inStock": 10,
-        "capacity": 44
+        "capacity": 44,
+        "voltage": 12,
+        "current": 440,
+        "length": 175,
+        "height": 190,
+        "width": 175
     },
 
     {
         "id": 560409054,
-        "title": "Аккумулятор Varta Blue 60",
+        "title": "Аккумулятор VARTA Blue 60 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/5154c71498119822.jpg",
         "type": "автоаккумуляторы",
         "price": 189,
         "inStock": 2,
-        "capacity": 60
+        "capacity": 60,
+        "voltage": 12,
+        "current": 540,
+        "length": 242,
+        "height": 175,
+        "width": 175
     },
+
+    {
+        "id": 560408054,
+        "title": "Аккумулятор VARTA Blue Dynamic D24 60 Аh",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/4118021498119822.jpg",
+        "type": "автоаккумуляторы",
+        "price": 205,
+        "inStock": 5,
+        "capacity": 60,
+        "voltage": 12,
+        "current": 540,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 565411057,
+        "title": "Аккумулятор Varta Blue Dynamic 65 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614164546re3f819.jpg",
+        "type": "автоаккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 65,
+        "voltage": 12,
+        "current": 570,
+        "length": 232,
+        "height": 225,
+        "width": 173
+    },
+
+    {
+        "id": 13986,
+        "title": "Аккумулятор VARTA 40 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/55024c1498119898.jpg",
+        "type": "автоаккумуляторы",
+        "price": 165,
+        "inStock": 10,
+        "capacity": 40,
+        "voltage": 12,
+        "current": 330,
+        "length": 187,
+        "height": 227,
+        "width": 140
+    },
+
+
+
+    {
+        "id": 565411057,
+        "title": "Аккумулятор Varta Blue Dynamic 65 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614164546re3f819.jpg",
+        "type": "автоаккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 65,
+        "voltage": 12,
+        "current": 570,
+        "length": 232,
+        "height": 225,
+        "width": 173
+    },
+
+    {
+        "id": 610402092,
+        "title": "Аккумулятор VARTA Silver Dynamic I1",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/5123831498119825.jpg",
+        "type": "автоаккумуляторы",
+        "price": 421,
+        "inStock": 6,
+        "capacity": 110,
+        "voltage": 12,
+        "current": 920,
+        "length": 394,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 11981,
+        "title": "Аккумулятор VARTA Silver Dynamic H3 100 Аh",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/e2a6fb1498119825.jpg",
+        "type": "автоаккумуляторы",
+        "price": 385,
+        "inStock": 10,
+        "capacity": 100,
+        "voltage": 12,
+        "current": 830,
+        "length": 353,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 11975,
+        "title": "Аккумулятор VARTA Silver Dynamic D15 63 Аh",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/e2a6fb1498119825.jpg",
+        "type": "автоаккумуляторы",
+        "price": 259,
+        "inStock": 9,
+        "capacity": 63,
+        "voltage": 12,
+        "current": 830,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 563401061,
+        "title": "Аккумулятор VARTA SILVER DYNAMIC 63 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614174305r07faed.jpg",
+        "type": "автоаккумуляторы",
+        "price": 251,
+        "inStock": 10,
+        "capacity": 63,
+        "voltage": 12,
+        "current": 610,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 556400048,
+        "title": "Аккумулятор Varta Black Dynamic 56 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202011/cat_t1605090170r8349a7.jpg",
+        "type": "автоаккумуляторы",
+        "price": 176,
+        "inStock": 15,
+        "capacity": 56,
+        "voltage": 12,
+        "current": 480,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 545412040,
+        "title": "Аккумулятор VARTA BLACK DYNAMIC 45 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614173914r890185.jpg",
+        "type": "автоаккумуляторы",
+        "price": 154,
+        "inStock": 12,
+        "capacity": 45,
+        "voltage": 12,
+        "current": 400,
+        "length": 207,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 556401048,
+        "title": "Аккумулятор VARTA BLACK DYNAMIC 56 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202102/cat_t1614176158r96f436.jpg",
+        "type": "автоаккумуляторы",
+        "price": 0,
+        "inStock": 0,
+        "capacity": 56,
+        "voltage": 12,
+        "current": 480,
+        "length": 242,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 605901,
+        "title": "Аккумулятор VARTA AGM 105 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/202010/cat_t1602578555re97ce7.jpg",
+        "type": "автоаккумуляторы",
+        "price": 630,
+        "inStock": 10,
+        "capacity": 105,
+        "voltage": 12,
+        "current": 950,
+        "length": 393,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 595901,
+        "title": "Аккумулятор VARTA Silver Dynamic G14 AGM 95 Аh",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/201708/cat_t1503422851r506d93.jpg",
+        "type": "автоаккумуляторы",
+        "price": 572,
+        "inStock": 8,
+        "capacity": 95,
+        "voltage": 12,
+        "current": 850,
+        "length": 353,
+        "height": 190,
+        "width": 175
+    },
+
+    {
+        "id": 580901080,
+        "title": "Аккумулятор Varta silver dynamic AGM 80 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/38d2391498121331.jpg",
+        "type": "автоаккумуляторы",
+        "price": 519,
+        "inStock": 10,
+        "capacity": 80,
+        "voltage": 12,
+        "current": 800,
+        "length": 175,
+        "height": 190,
+        "width": 195
+    },
+
 
     {
         "id": 725103115722,

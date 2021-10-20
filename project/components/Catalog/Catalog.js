@@ -5,11 +5,13 @@ import { withRouter } from 'react-router-dom'
 
 import {connect} from 'react-redux';
 
-import {  products_create, 
+import {  all_products_show, 
           products_filter_by_type, 
           products_sort_by_price, 
           products_searched 
         } from '../../redux/CatalogAC';
+
+import { CatalogThunkAC } from "../../redux/CatalogFetchThunk";
 
 
 import './Catalog.css';
@@ -19,22 +21,16 @@ import Product from './Product/Product';
 class Catalog extends React.PureComponent {
 
   static propTypes = {
-    initialListOfProducts: PropTypes.array.isRequired, //передано из родительского компонента
     catalog: PropTypes.object.isRequired, // передано из Redux
   };
 
-  componentWillMount() {
-    this.props.dispatch( products_create(this.props.initialListOfProducts) );
-  }
-
-  showAllProducts = () => {
-    this.props.dispatch( products_create(this.props.initialListOfProducts) );
-    console.log(this.props.catalog.products);
+  componentDidMount() {
+    this.props.dispatch( CatalogThunkAC(this.props.dispatch) );
   }
 
   handleFilter = (EO) => {
     const nextFilter = EO.target.value;
-    this.props.dispatch( products_create(this.props.initialListOfProducts) );
+    this.props.dispatch( all_products_show() );
     (nextFilter!='all')
     ? 
       this.props.dispatch( products_filter_by_type(nextFilter) )
@@ -60,7 +56,7 @@ class Catalog extends React.PureComponent {
 
   searchByQuery = (EO) => {
     let query = EO.target.value;
-    this.props.dispatch( products_create(this.props.initialListOfProducts) );
+    this.props.dispatch( all_products_show() );
     (query!='')
     ? 
       this.props.dispatch( products_searched(query) )
@@ -70,6 +66,13 @@ class Catalog extends React.PureComponent {
 
  
   render() {
+
+  if ( this.props.catalog.loadingStatus<=1 )
+    return "загрузка...";
+
+  if ( this.props.catalog.loadingStatus===2 )
+    return "ошибка загрузки данных";
+
 
   let products = this.props.catalog.products;
   

@@ -1,19 +1,51 @@
-import {    SET_PRODUCTS, 
+import {    LOAD_INIT_DATA,
+            SHOW_LOADING_ERROR,
+            SET_DATA,
+            SHOW_ALL_PRODUCTS, 
             SHOW_PRODUCTS_FILTERED_BY_TYPE, 
             SHOW_PRODUCTS_SORTED_BY_PRICE,
             SHOW_SEARCHED_PRODUCTS
         } from './CatalogAC';
 
 const initState = {
-    products:[]
+    loadingStatus: 0, // 0 - ничего не началось, 1 - идёт загрузка, 2 - была ошибка, 3 - данные загружены
+    initialProductsList:null,
+    products: null, 
 }
 
 
 function CatalogReducer(state=initState, action){
     switch(action.type) {
-        case SET_PRODUCTS: {
+        case LOAD_INIT_DATA: {
+            let newState={
+                loadingStatus: 1,
+                initialProductsList: null,
+                products: null,
+            };
+            return newState;
+        }
+
+        case SHOW_LOADING_ERROR: {
+            let newState={
+                loadingStatus: 2,
+                initialProductsList: null,
+                products: null,
+            };
+            return newState;
+        }
+
+        case SET_DATA: {
+            let newState={
+                loadingStatus: 3,
+                initialProductsList: action.data,
+                products: action.data,
+            };
+            return newState;
+          }
+
+        case SHOW_ALL_PRODUCTS: {
             let newState={...state,
-                products: action.payload
+                products: state.initialProductsList
             }
             return newState;
         }

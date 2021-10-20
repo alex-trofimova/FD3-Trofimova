@@ -29,7 +29,7 @@ class Product extends React.PureComponent {
 
   viewDetails = () => {
     this.props.dispatch( product_view_detailes(this.props.product) );
-    this.props.history.push('/product/'+this.props.product.id+'');
+    //this.props.history.push('/product/'+this.props.product.id+'');
   }
 
   handleAddToCart = () => {
@@ -60,6 +60,7 @@ class Product extends React.PureComponent {
 
     return (
      <div className="Product">
+       <Link to={'/product/'+this.props.product.id}>
         <ul onClick={this.viewDetails}>
           <li>
             <span className="product_title">{this.props.product.title}</span>
@@ -71,6 +72,7 @@ class Product extends React.PureComponent {
           
           </li>
         </ul>
+        </Link>
       <div className="product_addToCart">
         <button className='product_btn' 
                 value='to_cart'

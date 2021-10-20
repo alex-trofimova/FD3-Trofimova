@@ -23,7 +23,9 @@ class CartContent extends React.PureComponent {
       <div className="CartContent">
         <h2>Корзина</h2>
         <div className="CartContent_wrapper">
-          <table className='CartContent_table'>
+          { items.length >0 ? 
+          (
+            <table className='CartContent_table'>
             <thead>
               <tr className='CartContent_tableHeader'>
                 <th>Наименование товара</th>
@@ -40,9 +42,14 @@ class CartContent extends React.PureComponent {
               }
             </tbody>
           </table>
+          ) 
+          : 
+          (<p>В Вашей корзине нет товаров</p>)
+          }
+          
         </div>
         <Link to="/catalog">
-          <div>В каталог </div>
+          <div>Продолжить покупки </div>
           {/* <button onClick={() => { this.props.history.push('/catalog') }}>Продолжить покупки</button> */}
         </Link>
       </div>
