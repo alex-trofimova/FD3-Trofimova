@@ -7,3 +7,31 @@ a {
     cursor: pointer;
     color: black;
   }
+
+body {
+  font-weight: normal;
+  font-size: 14px;
+  font-family: 'Play', arial, sans-serif;
+  color: #202020;
+  background-color: rgb(241, 241, 241);
+}
+
+table {
+  border: collapse;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  background-color: rgb(45, 79, 156);
+  color: white;
+  /* width: 200px;
+  padding: 0 10px; */
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  background-color: rgb(241, 241, 241);
+}

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { product_remove_from_cart, product_change_quantity_by_one } from '../../../redux/CartAC';
 
+import ButtonDelete from './../../small_components/ButtonDelete'
+
 import './Item.css';
 
 class Item extends React.PureComponent {
@@ -11,6 +13,7 @@ class Item extends React.PureComponent {
   static propTypes = {
     item: PropTypes.shape({
       title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
       quantity: PropTypes.number.isRequired,
       price: PropTypes.number.isRequired,
       inStock: PropTypes.number.isRequired,
@@ -67,21 +70,26 @@ class Item extends React.PureComponent {
 
     return (
         <tr className= "Item_row" >
-          <td className="Item_cell">{this.props.item.title}</td>
-          <td className='Item_cell'>
-            <button onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}>-</button>
-            {this.props.item.quantity}
-            <button onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}>+</button>
+          <td className="Item_cell Item_image">
+            <img src={this.props.item.image} width="40px"/>
           </td>
-          <td className='Item_cell'>            
-            {this.props.item.quantity*this.props.item.price}
+          <td className="Item_cell Item_title">
+            <div>{this.props.item.title}</div>
           </td>
           <td className='Item_cell'>
-            <button className='Item_btn' 
-                    value={'delete_'+this.props.item.id} 
-                    onClick={this.handleRemoveFromCart}>
-              удалить
-            </button>
+            <div className='Item_change_number Item_quantity'>
+            <button className='Item_btn' onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}> - </button>
+              <span className='Item_number'>{this.props.item.quantity}</span>
+            <button className='Item_btn' onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}> + </button>
+            </div>
+          </td>
+          <td className='Item_cell Item_price'>            
+            {this.props.item.quantity*this.props.item.price+' руб.'}
+          </td>
+          <td className='Item_cell Item_delete' onClick={this.handleRemoveFromCart}>
+            <div className='Item_cross'>
+              <ButtonDelete classColor='cross_grey'/>
+            </div>
           </td>
         </tr>
     )

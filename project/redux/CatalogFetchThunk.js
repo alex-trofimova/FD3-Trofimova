@@ -17,7 +17,6 @@ function CatalogThunkAC(dispatch) {
             })
             .then( (data) => {
                 dispatch( data_set(data) );
-                console.log(data);
             })
             .catch( (error) => {
                 console.error(error);

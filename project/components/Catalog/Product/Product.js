@@ -15,6 +15,7 @@ class Product extends React.PureComponent {
   static propTypes = {
     product: PropTypes.shape({
       title: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       inStock: PropTypes.number.isRequired,
       id: PropTypes.number.isRequired,

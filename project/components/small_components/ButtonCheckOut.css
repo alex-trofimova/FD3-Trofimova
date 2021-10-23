@@ -1,0 +1,16 @@
+.Btn_check_out {
+    background-color: rgb(255, 165, 0);
+    padding: 5px 20px;
+    font-size: 16px;
+    border: 1px solid rgb(182, 92, 8); 
+    border-radius: 5px;
+    min-width: 100px;
+}
+
+.Btn_check_out:focus {
+    border: none;
+}
+
+.Btn_check_out:hover {
+    background-color:rgb(255, 150, 0);
+  }

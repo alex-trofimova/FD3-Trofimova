@@ -1,3 +1,53 @@
-﻿.Item_cell {
+﻿.Item_row {
+    padding: 5px 0;
+    border: 1px solid grey;
+}
+
+.Item_cell {
     text-align: center;
+    border: 1px solid #f1f1f1;
+}
+
+.Item_image {
+    width: 15%;
+    border-right: none;
+}
+
+.Item_title {
+    width: 35%;
+    border-left: none;
+    text-align: left;
+}
+
+.Item_quantity, 
+.Item_price {
+    width: 20%;
+}
+
+.Item_delete {
+    width: 10%;
+}
+
+.Item_change_number {
+    border: 1px solid #f1f1f1;
+    width: 72px;
+    margin: 0 auto;
+}
+
+.Item_number {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+}
+
+.Item_btn {
+   background-color: rgb(241, 241, 241);
+   width: 25px;
+   appearance: none;
+   border: 0;
+   cursor: pointer;
+}
+
+.Item_cross {
+    margin: 0 38%;
 }

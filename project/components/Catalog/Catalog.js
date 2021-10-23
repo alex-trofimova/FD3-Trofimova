@@ -38,6 +38,15 @@ class Catalog extends React.PureComponent {
       null
   };
 
+  handleSorter = (EO) => {
+    const nextSorter = EO.target.value;
+    (nextSorter==='inc') 
+      ? this.props.dispatch( products_sort_by_price(1) ):
+    (nextSorter==='dec') 
+      ? this.props.dispatch( products_sort_by_price(-1) ):
+    null
+  };
+
   sortByPriceInc = () => {
     this.props.dispatch( products_sort_by_price(1) )
   }
@@ -47,14 +56,17 @@ class Catalog extends React.PureComponent {
   }
 
   showAvtoAkum = () => {
+    this.props.dispatch( all_products_show() );
     this.props.dispatch( products_filter_by_type('автоаккумуляторы') );    
   }
   
   showTruckAkum = () => {
+    this.props.dispatch( all_products_show() );
     this.props.dispatch( products_filter_by_type('грузовые аккумуляторы') );    
   }
 
   showMotoAkum = () => {
+    this.props.dispatch( all_products_show() );
     this.props.dispatch( products_filter_by_type('мотоциклетные аккумуляторы') );    
   }
 
@@ -85,24 +97,37 @@ class Catalog extends React.PureComponent {
         <h2>Каталог товаров</h2> 
         <div className="Catalog_wrapper">
           <div className="Catalog_filter">
-          <br/>
-            <select onChange={this.handleFilter}>
-              <option value='all'>Все</option>
-              <option value='автоаккумуляторы'>Автоаккумуляторы</option>
-              <option value='грузовые аккумуляторы'>Грузовые аккумуляторы</option>
-              <option value='мотоциклетные аккумуляторы'>Мотоциклетные аккумуляторы</option>
-            </select>
-            <br/>
-            <br/>
-            <button className='Catalog_btn' value='sort_by_price_1' onClick={this.sortByPriceInc}>Сортировать по возрастанию</button>
-            <br/>
-            <button className='Catalog_btn' value='sort_by_price_1' onClick={this.sortByPriceDec}>Сортировать по убыванию</button>
-            <br/>
-            <br/>
-            <input type="text" placeholder="Введите запрос" onChange={this.searchByQuery}></input>
+            <div className="Catalog_filter_type">
+              <div className="Catalog_filter_type_item" onClick={this.showAvtoAkum}>
+                Автоаккумуляторы
+              </div>
+              <div className="Catalog_filter_type_item" onClick={this.showTruckAkum}>
+                Грузовые аккумуляторы
+              </div>
+              <div className="Catalog_filter_type_item" onClick={this.showMotoAkum}>
+                Мотоциклетные аккумуляторы
+              </div>
+            </div>
 
+            <div className="Catalog_filter_sort">
+              <div className="Catalog_filter_sort_search">
+                <input type="text" placeholder="Введите запрос" onChange={this.searchByQuery}></input>
+              </div>
+              <div className="Catalog_filter_sort_inStock">
+                Только в наличии
+              </div>
+              <div className="Catalog_filter_sort_byPrice">
+                <select className="Catalog_filter_sort_select" onChange={this.handleSorter}>
+                  <option value='none'>Сортировать</option>
+                  <option value='inc'>по цене с дешевых</option>
+                  <option value='dec'>по цене с дорогих</option>
+                </select>
+              </div>
+            </div>
+            
             
           </div>
+
           <div className="Catalog_productsResults">
             {products.map(elem => <Product key={elem.id} product={elem} />)}
           </div>

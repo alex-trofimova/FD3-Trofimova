@@ -1,0 +1,31 @@
+.ButtonDelete_cross {
+    cursor: pointer;
+}
+
+.ButtonDelete_cross:hover >
+    .ButtonDelete_line {
+        background-color: red;
+        transition: 0.3s ease;   
+    }
+
+.ButtonDelete_line {
+    position: absolute;
+    width: 18px;
+    height: 3px;
+    
+}
+
+.cross_grey {
+    background-color: rgb(241, 241, 241);
+}
+
+.cross_white {
+    background-color: white;
+} 
+
+.ButtonDelete_first_line {
+    transform: rotate(-45deg);
+}
+.ButtonDelete_second_line {
+    transform: rotate(45deg);
+}

@@ -1,0 +1,16 @@
+.Page_Home {
+    width: 100%;
+    margin: 0 auto;
+}
+.Page_Home_wrapper{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.Page_Home_block {
+    width: 33%;
+    height: 400px;
+    border: red 1px solid;
+    background-color:thistle;
+}

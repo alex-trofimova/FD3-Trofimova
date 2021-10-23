@@ -1,7 +1,7 @@
 import {    LOAD_INIT_DATA,
             SHOW_LOADING_ERROR,
             SET_DATA,
-            SHOW_ALL_PRODUCTS, 
+            SHOW_ALL_PRODUCTS,
             SHOW_PRODUCTS_FILTERED_BY_TYPE, 
             SHOW_PRODUCTS_SORTED_BY_PRICE,
             SHOW_SEARCHED_PRODUCTS
@@ -10,7 +10,7 @@ import {    LOAD_INIT_DATA,
 const initState = {
     loadingStatus: 0, // 0 - ничего не началось, 1 - идёт загрузка, 2 - была ошибка, 3 - данные загружены
     initialProductsList:null,
-    products: null, 
+    products: null,
 }
 
 
@@ -41,7 +41,8 @@ function CatalogReducer(state=initState, action){
                 products: action.data,
             };
             return newState;
-          }
+        }
+
 
         case SHOW_ALL_PRODUCTS: {
             let newState={...state,
@@ -49,7 +50,7 @@ function CatalogReducer(state=initState, action){
             }
             return newState;
         }
-        
+
         case SHOW_PRODUCTS_FILTERED_BY_TYPE: {
             let newState={...state,
                 products: state.products.filter(item => item.type === action.productType)
