@@ -1,1 +1,90 @@
-﻿
+﻿.ProductCard {
+    margin: 80px auto 0;
+}
+
+.ProductCard_description {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.ProductCard_image {
+    width: 40%;
+    text-align: center;
+}
+
+.ProductCard_details {
+    width: 40%;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ProductCard_price_block {
+    background-color: rgb(241, 241, 241);
+    height: 60px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ProductCard_price {
+    font-size: 20px;
+}
+
+.ProductCard_change_number {
+    border: 1px solid white;
+    background-color: white;
+    height: 30px;
+}
+
+.ProductCard_number {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+}
+
+.ProductCard_btn {
+   background-color: rgb(45, 79, 156);
+   width: 25px;
+   height: 30px;
+   appearance: none;
+   border: 0;
+   cursor: pointer;
+}
+
+.ProductCard_addToCart_btn {
+   height: 30px;
+   margin-top: 10px;
+   padding: 0 20px;
+}
+
+.ProductCard_characteristics {
+    margin-left: 20px;
+}
+
+.ProductCard_characteristics_title {
+    margin: 20px 0 10px;
+    font-weight: bold; 
+}
+
+.ProductCard_characteristics_item {
+    margin: 5px 0;
+}
+
+.ProductCard_characteristics_item > span {
+    display:inline-block;
+    width: 200px;
+}
+
+.ProductCard_back_to_catalog {
+    margin: 20px auto;
+    background-color: rgb(255, 165, 0);
+    color: white;
+    text-align: center;
+    height: 40px;
+    width: 240px;
+    border-radius: 5px;
+    line-height: 40px;
+}

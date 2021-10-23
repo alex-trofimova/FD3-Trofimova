@@ -1,10 +1,13 @@
 const LOAD_INIT_DATA='LOAD_INIT_DATA',
       SHOW_LOADING_ERROR='SHOW_LOADING_ERROR',
       SET_DATA='SET_DATA',
+
       SHOW_ALL_PRODUCTS='SHOW_ALL_PRODUCTS',
       SHOW_PRODUCTS_FILTERED_BY_TYPE='SHOW_PRODUCTS_FILTERED_BY_TYPE',
       SHOW_PRODUCTS_SORTED_BY_PRICE='SHOW_PRODUCTS_SORTED_BY_PRICE',
-      SHOW_SEARCHED_PRODUCTS='SHOW_SEARCHED_PRODUCTS';
+      SHOW_SEARCHED_PRODUCTS='SHOW_SEARCHED_PRODUCTS',
+      SHOW_IN_STOCK_PRODUCTS='SHOW_IN_STOCK_PRODUCTS';
+
 
 function data_load() {
     return {
@@ -52,6 +55,12 @@ function products_searched(query){
       }
 }
 
+function products_in_stock(){
+    return {
+        type: SHOW_IN_STOCK_PRODUCTS,
+      }
+}
+
 
 
 export {
@@ -62,4 +71,5 @@ export {
     products_filter_by_type, SHOW_PRODUCTS_FILTERED_BY_TYPE,
     products_sort_by_price, SHOW_PRODUCTS_SORTED_BY_PRICE,
     products_searched, SHOW_SEARCHED_PRODUCTS,
+    products_in_stock, SHOW_IN_STOCK_PRODUCTS
 }

@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import { product_add_to_cart, product_change_quantity_by_one } from '../../../redux/CartAC';
+import { item_add_to_cart, item_change_quantity_by_one } from '../../../redux/CartAC';
 import { product_view_detailes } from '../../../redux/ProductCardAC';
 
 import { withRouter } from 'react-router-dom'
@@ -43,12 +43,12 @@ class Product extends React.PureComponent {
           alert('Невозможно заказать больше: всего в наличии '+this.props.product.inStock+ ' штук.');
           return;
         }
-      this.props.dispatch( product_change_quantity_by_one(repeatedItem.id, 1) );
+      this.props.dispatch( item_change_quantity_by_one(repeatedItem.id, 1) );
     }
     else  
      {
       productToCart["quantity"]=1;
-      this.props.dispatch( product_add_to_cart(productToCart) );
+      this.props.dispatch( item_add_to_cart(productToCart) );
     }
     //this.props.history.push('/cart');  
   };
@@ -57,33 +57,39 @@ class Product extends React.PureComponent {
   render() {
     let cartItems = this.props.cart.items;
     let addedProduct = cartItems.find(item => (item.id === this.props.product.id));
-    let quantity = (addedProduct) ? '('+addedProduct.quantity+')' : null;
+    let quantity = (addedProduct) ? '('+addedProduct.quantity+')' : '';
 
-    return (
-     <div className="Product">
-       <Link to={'/product/'+this.props.product.id}>
-        <ul onClick={this.viewDetails}>
-          <li>
-            <span className="product_title">{this.props.product.title}</span>
-          </li>
-          <li>
-            <span className="product_price">{this.props.product.price+' руб.'}</span>
-          </li>
-          <li>
-          
-          </li>
-        </ul>
-        </Link>
-      <div className="product_addToCart">
-        <button className='product_btn' 
+    let btnTitle = (this.props.product.inStock!=0) ? 'Добавить в корзину ' : 'Оставить заявку';
+
+  return (
+    <div className="Product">
+      <Link to={'/product/'+this.props.product.id}>
+        <div className="Product_wrapper" onClick={this.viewDetails}>
+          <div className="Product_title">
+            {this.props.product.title}
+          </div>
+          <div className="Product_image">
+            <img src={this.props.product.image} width="200px"/>
+          </div>
+          <div className="Product_price">
+            <span>{this.props.product.price+' руб.'}</span>
+          </div>
+        </div>
+      </Link>
+      <div className="Product_addToCart">
+        <button className={(this.props.product.inStock!=0)?"Product_btn":"Product_btn Product_btn_disable"} 
                 value='to_cart'
-                disabled={(this.state.isNotEnoughItemsInStock)} 
+                disabled={((this.state.isNotEnoughItemsInStock)|| (this.props.product.inStock===0))} 
                 onClick={this.handleAddToCart}
         >
-              Добавить в корзину {quantity}
+             {
+               (this.props.product.inStock!=0)?
+                btnTitle+' '+quantity:
+                btnTitle
+             }
         </button>  
       </div>
-  </div>
+    </div>
     )
     ;
   }

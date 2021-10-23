@@ -4,7 +4,8 @@ import {    LOAD_INIT_DATA,
             SHOW_ALL_PRODUCTS,
             SHOW_PRODUCTS_FILTERED_BY_TYPE, 
             SHOW_PRODUCTS_SORTED_BY_PRICE,
-            SHOW_SEARCHED_PRODUCTS
+            SHOW_SEARCHED_PRODUCTS,
+            SHOW_IN_STOCK_PRODUCTS
         } from './CatalogAC';
 
 const initState = {
@@ -68,6 +69,13 @@ function CatalogReducer(state=initState, action){
         case SHOW_SEARCHED_PRODUCTS: {
             let newState={...state,
                 products: state.products.filter(item => !(item.title.toLowerCase().indexOf(action.payload.toLowerCase()) ==-1))
+            }
+            return newState;
+        }
+        
+        case SHOW_IN_STOCK_PRODUCTS: {
+            let newState={...state,
+                products: state.products.filter(item => item.inStock !=0)
             }
             return newState;
         }

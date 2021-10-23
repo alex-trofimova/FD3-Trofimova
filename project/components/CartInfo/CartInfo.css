@@ -1,8 +1,4 @@
-﻿.CartInfo {
-    margin-top: 5%;
-}
-
-.CartInfo_click {
+﻿.CartInfo_click {
     cursor: pointer;
     display: flex;
     justify-content: space-between;

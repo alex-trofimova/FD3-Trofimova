@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
-import { product_remove_from_cart, product_change_quantity_by_one } from '../../../redux/CartAC';
+import { item_remove_from_cart, item_change_quantity_by_one } from '../../../redux/CartAC';
 
 import ButtonDelete from './../../small_components/ButtonDelete'
 
@@ -37,14 +37,14 @@ class Item extends React.PureComponent {
   }
 
   handleRemoveFromCart = () => {
-    this.props.dispatch( product_remove_from_cart(this.props.item.id) );
+    this.props.dispatch( item_remove_from_cart(this.props.item.id) );
   };
 
   decreaseQuantity = () => {
     if (this.state.isNotEnoughItemsInStock) {
       this.setState( {isNotEnoughItemsInStock: false});
     }
-    this.props.dispatch( product_change_quantity_by_one(this.props.item.id, -1) );
+    this.props.dispatch( item_change_quantity_by_one(this.props.item.id, -1) );
     if (this.props.item.quantity===1) {
       this.setState( {isItemBecomeOne: true});
       return;
@@ -61,7 +61,7 @@ class Item extends React.PureComponent {
       alert('Невозможно заказать больше: всего в наличии '+this.props.item.inStock+ ' штук.');
       return;
     }
-    this.props.dispatch( product_change_quantity_by_one(this.props.item.id, 1) );
+    this.props.dispatch( item_change_quantity_by_one(this.props.item.id, 1) );
   };
 
 
@@ -78,9 +78,9 @@ class Item extends React.PureComponent {
           </td>
           <td className='Item_cell'>
             <div className='Item_change_number Item_quantity'>
-            <button className='Item_btn' onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}> - </button>
-              <span className='Item_number'>{this.props.item.quantity}</span>
-            <button className='Item_btn' onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}> + </button>
+              <button className='Item_btn' onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}> - </button>
+                <span className='Item_number'>{this.props.item.quantity}</span>
+              <button className='Item_btn' onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}> + </button>
             </div>
           </td>
           <td className='Item_cell Item_price'>            

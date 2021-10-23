@@ -1,31 +1,31 @@
-const ADD_PRODUCT_TO_CART='ADD_PRODUCT_TO_CART',
-      REMOVE_PRODUCT_FROM_CART='REMOVE_PRODUCT_FROM_CART',
-      CHANGE_QUANTITY_OF_PRODUCT_BY_ONE='CHANGE_QUANTITY_OF_PRODUCT_BY_ONE';
+const ADD_ITEM_TO_CART='ADD_ITEM_TO_CART',
+      REMOVE_ITEM_FROM_CART='REMOVE_ITEM_FROM_CART',
+      CHANGE_QUANTITY_OF_ITEM_BY_ONE='CHANGE_QUANTITY_OF_ITEM_BY_ONE';
 
-function product_add_to_cart(item){
+function item_add_to_cart(item){
     return {
-        type: ADD_PRODUCT_TO_CART,
+        type: ADD_ITEM_TO_CART,
         payload: item, 
       }
 }
 
-function product_remove_from_cart(id){
+function item_remove_from_cart(id){
     return {
-        type: REMOVE_PRODUCT_FROM_CART,
+        type: REMOVE_ITEM_FROM_CART,
         payload: id, 
       }
 }
 
-function product_change_quantity_by_one(id, sign){
+function item_change_quantity_by_one(id, sign){
     return {
-        type: CHANGE_QUANTITY_OF_PRODUCT_BY_ONE,
+        type: CHANGE_QUANTITY_OF_ITEM_BY_ONE,
         id: id,
         sign: sign 
       }
 }
 
 export {
-    product_add_to_cart, ADD_PRODUCT_TO_CART,
-    product_remove_from_cart, REMOVE_PRODUCT_FROM_CART,
-    product_change_quantity_by_one, CHANGE_QUANTITY_OF_PRODUCT_BY_ONE,
+    item_add_to_cart, ADD_ITEM_TO_CART,
+    item_remove_from_cart, REMOVE_ITEM_FROM_CART,
+    item_change_quantity_by_one, CHANGE_QUANTITY_OF_ITEM_BY_ONE,
 }

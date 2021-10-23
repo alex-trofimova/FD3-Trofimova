@@ -1,5 +1,6 @@
 ﻿.Product {
     width: 25%;
+    height: 360px;
     border: 1px solid rgb(241, 241, 241);
 }
 
@@ -7,11 +8,42 @@
     border-color: grey;
 }
 
-
-ul {
-    cursor: pointer;
+.Product_wrapper {
+   height: 300px;
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   align-items: center; 
 }
 
-li {
-    list-style-type: none;
+.Product_title {
+    display: inline-block;
+    height: 60px;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.Product_image {
+    height: 220px;
+}
+
+.Product_price {
+    height: 20px;
+    font-size: 18px;
+}
+
+.Product_addToCart {
+    height: 50px;
+}
+
+.Product_btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.Product_btn_disable {
+    background-color: rgb(117, 147, 216);
+    cursor: default;
 }

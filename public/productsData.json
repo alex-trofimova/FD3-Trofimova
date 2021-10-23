@@ -1,35 +1,5 @@
 [
     {
-        "id": 9537,
-        "title": "Аккумулятор VARTA Blue 44 Ah",
-        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/0bf9001498119822.jpg",
-        "type": "автоаккумуляторы",
-        "price": 159,
-        "inStock": 10,
-        "capacity": 44,
-        "voltage": 12,
-        "current": 440,
-        "length": 175,
-        "height": 190,
-        "width": 175
-    },
-
-    {
-        "id": 560409054,
-        "title": "Аккумулятор VARTA Blue 60 Ah",
-        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/5154c71498119822.jpg",
-        "type": "автоаккумуляторы",
-        "price": 189,
-        "inStock": 2,
-        "capacity": 60,
-        "voltage": 12,
-        "current": 540,
-        "length": 242,
-        "height": 175,
-        "width": 175
-    },
-
-    {
         "id": 560408054,
         "title": "Аккумулятор VARTA Blue Dynamic D24 60 Аh",
         "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/4118021498119822.jpg",
@@ -71,6 +41,21 @@
         "current": 680,
         "length": 278,
         "height": 175,
+        "width": 175
+    },
+
+    {
+        "id": 9537,
+        "title": "Аккумулятор VARTA Blue 44 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/0bf9001498119822.jpg",
+        "type": "автоаккумуляторы",
+        "price": 159,
+        "inStock": 10,
+        "capacity": 44,
+        "voltage": 12,
+        "current": 440,
+        "length": 175,
+        "height": 190,
         "width": 175
     },
 
@@ -130,6 +115,21 @@
         "voltage": 12,
         "current": 740,
         "length": 315,
+        "height": 175,
+        "width": 175
+    },
+
+    {
+        "id": 560409054,
+        "title": "Аккумулятор VARTA Blue 60 Ah",
+        "image": "https://varta.by/storage/product_images/thumbs/rs_800x800/June2017/5154c71498119822.jpg",
+        "type": "автоаккумуляторы",
+        "price": 189,
+        "inStock": 2,
+        "capacity": 60,
+        "voltage": 12,
+        "current": 540,
+        "length": 242,
         "height": 175,
         "width": 175
     },

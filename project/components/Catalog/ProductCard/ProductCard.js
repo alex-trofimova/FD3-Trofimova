@@ -1,8 +1,11 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link  } from 'react-router-dom';
+
 import {connect} from 'react-redux';
-import { product_add_to_cart, product_change_quantity_by_one } from '../../../redux/CartAC'
+import { product_change_quantity_by_one } from '../../../redux/ProductCardAC'
+import { item_add_to_cart, item_change_quantity_by_one, item_remove_from_cart} from '../../../redux/CartAC'
 
 import './ProductCard.css';
 
@@ -29,63 +32,60 @@ class ProductCard extends React.PureComponent {
           alert('Невозможно заказать больше: всего в наличии ' +this.props.productDetailes.inStock+ ' штук.');
           return;
       }
-      this.props.dispatch( product_change_quantity_by_one(repeatedItem.id, 1) );
+      this.props.dispatch( item_remove_from_cart(repeatedItem.id) );
     }
-    else {
-      productToCart["quantity"]=1;
-      this.props.dispatch( product_add_to_cart(productToCart) );
-    }
-    //this.props.history.push('/cart');  
+    this.props.dispatch( item_add_to_cart(productToCart) );
   };
 
 
-  // decreaseQuantity = () => {
-  //   if (this.state.isNotEnoughItemsInStock) {
-  //     this.setState( {isNotEnoughItemsInStock: false});
-  //   }
-  //   this.props.dispatch( product_change_quantity_by_one(this.props.item.id, -1) );
-  //   if (this.props.item.quantity===1) {
-  //     this.setState( {isItemBecomeOne: true});
-  //     return;
-  //   }
-    
-  // };
+  decreaseQuantity = () => {
+    if (this.state.isNotEnoughItemsInStock) {
+      this.setState( {isNotEnoughItemsInStock: false});
+    }
+    this.props.dispatch( product_change_quantity_by_one(-1) );
+    if (this.props.productDetailes.quantity===1) {
+      this.setState( {isItemBecomeOne: true});
+      return;
+    }
+  };
 
-  // increaseQuantity = () => {
-  //   if (this.state.isItemBecomeOne) {
-  //     this.setState( {isItemBecomeOne: false});
-  //   }
-  //   if (this.props.item.quantity===this.props.item.inStock) {
-  //     this.setState( {isNotEnoughItemsInStock: true});
-  //     alert('Невозможно заказать больше: всего в наличии '+this.props.item.inStock+ ' штук.');
-  //     return;
-  //   }
-  //   this.props.dispatch( product_change_quantity_by_one(this.props.item.id, 1) );
-  // };
+  increaseQuantity = () => {
+    if (this.state.isItemBecomeOne) {
+      this.setState( {isItemBecomeOne: false});
+    }
+    if (this.props.productDetailes.quantity===this.props.productDetailes.inStock) {
+      this.setState( {isNotEnoughItemsInStock: true});
+      alert('Невозможно заказать больше: всего в наличии '+this.props.productDetailes.inStock+ ' штук.');
+      return;
+    }
+    this.props.dispatch( product_change_quantity_by_one(1) );
+    console.log(this.props.productDetailes.quantity);
+  };
 
   render() {
     let cartItems = this.props.cart.items;
     let addedProduct = cartItems.find(item => (item.id === this.props.productDetailes.id));
-    console.log(this.props.productDetailes);
-    //let quantity = (addedProduct) ? '('+addedProduct.quantity+')' : null;
+   
 
     return (
-      // <div>
-      //   <button onClick={()=>{console.log(this.props.productDetailes)}}>Нажать</button>
-      // </div>
-     <div className="ProductCard">
-            <h3 className="productCard_title">{this.props.productDetailes.title}</h3>
-            <div className="productCard_description">
-              <div className="productCard_image"></div>
-              <div className="productCard_details">
-                <span className="productCard_price">{this.props.productDetailes.price+' руб.'}</span>
-                <div className='Item_cell'>
-                  <button onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}>-</button>
-                    {/* {addedProduct.quantity} */}
-                  <button onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}>+</button>
-                </div>
-                <div className="product_addToCart">
-                  <button className='productCard_btn' 
+      <div className="ProductCard">
+        <h3 className="ProductCard_title">{this.props.productDetailes.title}</h3>
+        <div className="ProductCard_description">
+
+          <div className="ProductCard_image">
+            <img src={this.props.productDetailes.image} width="280px"/>
+          </div>
+
+          <div className="ProductCard_details">
+            <div className="ProductCard_price_block">
+              <div className='ProductCard_price'>{this.props.productDetailes.price+' руб.'}</div>
+              <div className='ProductCard_change_number ProductCard_quantity'>
+                <button className='ProductCard_btn' onClick={this.decreaseQuantity} disabled={(this.state.isItemBecomeOne)}> - </button>
+                  <span className='ProductCard_number'>{this.props.productDetailes.quantity}</span>
+                <button className='ProductCard_btn' onClick={this.increaseQuantity} disabled={(this.state.isNotEnoughItemsInStock)}> + </button>
+              </div>
+                <div className="Product_addToCart">
+                  <button className='ProductCard_addToCart_btn' 
                           value='to_cart'
                           disabled={(this.state.isNotEnoughItemsInStock)} 
                           onClick={this.handleAddToCart}
@@ -93,12 +93,40 @@ class ProductCard extends React.PureComponent {
                         Добавить в корзину
                   </button>  
                 </div>
-                <div className="productCard_characteristics">
-                  Характеристики
-                  {this.props.productDetailes.capacity}
-                </div>
-              </div>
             </div>
+              
+            <div className="ProductCard_characteristics">
+                <div className="ProductCard_characteristics_title">Характеристики:</div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Производитель: </span>Varta
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Емкость: </span>{this.props.productDetailes.capacity+' Ач'}
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Ток холодной прокрутки: </span>{this.props.productDetailes.current+' А'}
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Напряжение: </span>{this.props.productDetailes.voltage+' В'}
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Длина: </span>{this.props.productDetailes.length+' мм'}
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Высота: </span>{this.props.productDetailes.height+' мм'}
+                </div>
+                <div className="ProductCard_characteristics_item">
+                  <span>Ширина: </span>{this.props.productDetailes.width+' мм'}
+                </div>
+                <Link to="/catalog">
+                  <div className="ProductCard_back_to_catalog">Вернуться в каталог товаров</div>
+                </Link>   
+            </div>
+
+          </div>
+
+        </div>
+        
       </div>
         )
         ;
