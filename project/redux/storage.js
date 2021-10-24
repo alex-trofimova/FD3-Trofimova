@@ -3,7 +3,6 @@ function saveState(state) {
     try {
         const {cart, product} = state;
         localStorage.setItem('reduxCartState', JSON.stringify({cart, product}))
-        //localStorage.setItem('reduxCartState', JSON.stringify(state))
     } 
     catch (err) {
     }

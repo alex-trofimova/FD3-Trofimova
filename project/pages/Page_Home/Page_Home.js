@@ -1,15 +1,9 @@
 import React from 'react';
 import { Link  } from 'react-router-dom';
-//import PropTypes from 'prop-types';
-import Categories from './../../components/Categories/Categories';
 
 import './Page_Home.css';
 
 class Page_Home extends React.PureComponent {
-
-  static propTypes = {
-    //name: PropTypes.string.isRequired,
-  };
 
   render() {
 
@@ -17,24 +11,29 @@ class Page_Home extends React.PureComponent {
       <section>
         <div className="Page_Home">
           <div className="Page_Home_wrapper">
-              <div className="Page_Home_block">
-                <Link to="/catalog_avto">
-                Автомобильные аккумуляторы
-                </Link>
+          <div className="Page_Home_block"> 
+            <Link to="/catalog">
+              <div className="Page_Home_item Page_Home_avto">  
               </div>
-            
-              <div className="Page_Home_block">
-                <Link to="/catalog_truck">
-                Грузовые аккумуляторы
-                </Link>
+              <div className="Page_Home_itemName">Автомобильные аккумуляторы</div>
+            </Link>
+          </div>
+
+          <div className="Page_Home_block">
+            <Link to="/catalog">
+              <div className="Page_Home_item Page_Home_truck">  
               </div>
-            
-            
-              <div className="Page_Home_block">
-              <Link to="/catalog_moto">  
-                Мотоциклетные аккумуляторы
-              </Link>  
+              <div className="Page_Home_itemName">Грузовые аккумуляторы</div>
+            </Link>
+          </div>
+
+          <div className="Page_Home_block">
+            <Link to="/catalog">
+              <div className="Page_Home_item Page_Home_moto">  
               </div>
+              <div className="Page_Home_itemName">Мотоциклетные аккумуляторы</div>
+            </Link>
+          </div>
             
           </div>
         </div>

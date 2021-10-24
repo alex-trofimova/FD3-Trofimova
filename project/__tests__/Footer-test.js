@@ -1,12 +1,12 @@
 ﻿import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ExampleComponent from '../components/ExampleComponent';
+import Footer from '../components/Footer/Footer';
 
-test('работа ExampleComponent', () => {
+test('работа Footer', () => {
 
   const component = renderer.create(
-    <ExampleComponent />
+    <Footer />
   );
 
   let componentTree=component.toJSON();

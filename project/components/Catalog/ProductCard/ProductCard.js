@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import { product_change_quantity_by_one } from '../../../redux/ProductCardAC'
 import { item_add_to_cart, item_change_quantity_by_one, item_remove_from_cart} from '../../../redux/CartAC'
 
+import { getNumWord } from './../../../modules/getNumWord';
+
 import './ProductCard.css';
 
 class ProductCard extends React.PureComponent {
@@ -43,7 +45,7 @@ class ProductCard extends React.PureComponent {
       this.setState( {isNotEnoughItemsInStock: false});
     }
     this.props.dispatch( product_change_quantity_by_one(-1) );
-    if (this.props.productDetailes.quantity===1) {
+    if (this.props.productDetailes.quantity<=1) {
       this.setState( {isItemBecomeOne: true});
       return;
     }
@@ -55,7 +57,7 @@ class ProductCard extends React.PureComponent {
     }
     if (this.props.productDetailes.quantity===this.props.productDetailes.inStock) {
       this.setState( {isNotEnoughItemsInStock: true});
-      alert('Невозможно заказать больше: всего в наличии '+this.props.productDetailes.inStock+ ' штук.');
+      alert('Невозможно заказать больше: всего в наличии '+this.props.item.inStock+ ' '+getNumWord(this.props.item.inStock));
       return;
     }
     this.props.dispatch( product_change_quantity_by_one(1) );

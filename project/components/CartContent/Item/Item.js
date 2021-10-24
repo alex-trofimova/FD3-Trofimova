@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { item_remove_from_cart, item_change_quantity_by_one } from '../../../redux/CartAC';
 
-import ButtonDelete from './../../small_components/ButtonDelete'
+import ButtonDelete from './../../small_components/ButtonDelete';
+import { getNumWord } from './../../../modules/getNumWord';
 
 import './Item.css';
 
@@ -58,7 +59,7 @@ class Item extends React.PureComponent {
     }
     if (this.props.item.quantity===this.props.item.inStock) {
       this.setState( {isNotEnoughItemsInStock: true});
-      alert('Невозможно заказать больше: всего в наличии '+this.props.item.inStock+ ' штук.');
+      alert('Невозможно заказать больше: всего в наличии '+this.props.item.inStock+ ' '+getNumWord(this.props.item.inStock));
       return;
     }
     this.props.dispatch( item_change_quantity_by_one(this.props.item.id, 1) );

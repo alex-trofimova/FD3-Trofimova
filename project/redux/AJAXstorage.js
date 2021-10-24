@@ -1,7 +1,7 @@
 "use strict";
 import $ from 'jquery';
 
-let ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+let ajaxHandlerScript="http://fe.it-academy.by/AjaxStringStorage2.php";
 let stringName = 'TROFIMOVA_PROJECT_VARTA_CART';
 let updatePassword;
 

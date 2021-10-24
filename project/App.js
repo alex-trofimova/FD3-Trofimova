@@ -19,7 +19,6 @@ import Footer from './components/Footer/Footer';
 import Page_Home from './pages/Page_Home/Page_Home';
 import Page_Catalog from './pages/Page_Catalog/Page_Catalog';
 import Page_Product from './pages/Page_Product/Page_Product';
-import Page_Cart from './pages/Page_Cart/Page_Cart';
 
 // default styles
 import './default.css';
@@ -57,14 +56,6 @@ ReactDOM.render(
             )}
             />
 
-            <Route path="/cart" render={() => (
-            <div>
-              <Header />
-              <Page_Cart />
-              <Footer /> 
-            </div>
-            )}
-            />
 
           </Switch>
       </BrowserRouter>
