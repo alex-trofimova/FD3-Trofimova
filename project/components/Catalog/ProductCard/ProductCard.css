@@ -1,11 +1,14 @@
 ﻿.ProductCard {
     margin: 80px auto 0;
+    width: 1280px;
+
 }
 
 .ProductCard_description {
     display: flex;
     justify-content: center;
     background-color: white;
+    width: 100%;
 }
 
 
