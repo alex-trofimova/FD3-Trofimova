@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа ButtonDelete 1`] = `
+<div
+  className="ButtonDelete_cross"
+>
+  <div
+    className="cross_white ButtonDelete_line ButtonDelete_first_line"
+  />
+  <div
+    className="cross_white ButtonDelete_line ButtonDelete_second_line"
+  />
+</div>
+`;

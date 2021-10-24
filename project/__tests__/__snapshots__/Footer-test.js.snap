@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа Footer 1`] = `
+<footer
+  className="Footer"
+>
+  <div
+    className="Footer_wrapper"
+  >
+    @Trofimova 2021
+  </div>
+</footer>
+`;

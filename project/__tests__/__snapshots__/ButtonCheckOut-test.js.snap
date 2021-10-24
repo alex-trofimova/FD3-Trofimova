@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа ButtonCheckOut 1`] = `
+<button
+  className="Btn_check_out"
+  onClick={[Function]}
+>
+  Оформить заказ
+</button>
+`;
+
+exports[`работа ButtonCheckOut 2`] = `
+<button
+  className="Btn_check_out"
+  onClick={[Function]}
+>
+  Оформить заказ
+</button>
+`;
