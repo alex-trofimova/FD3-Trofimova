@@ -8,6 +8,7 @@
     background-color: white;
 }
 
+
 .ProductCard_image {
     width: 40%;
     text-align: center;
@@ -87,4 +88,34 @@
     width: 240px;
     border-radius: 5px;
     line-height: 40px;
+}
+
+@media only screen and (max-width: 560px) {
+    .ProductCard_description {
+        display: block;
+        height: 680px;
+    }
+
+    .ProductCard_image {
+        width: 100%;
+    }
+
+    .ProductCard_details {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .ProductCard_price_block {
+        display: block;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    .ProductCard_characteristics {
+        margin: 60px 10px;
+        text-align: left;
+    }
+
 }

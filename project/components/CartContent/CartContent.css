@@ -38,6 +38,14 @@ th,
     margin: 20px 0 20px 35%;
 }
 
+@media only screen and (max-width: 560px) {
+    .CartContent_total {
+        width: 80%;
+        font-size: 16px;
+    }
+    
+  }
+
 .CartContent_order {
     height: 40px;
 }

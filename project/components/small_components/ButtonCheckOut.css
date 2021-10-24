@@ -14,3 +14,11 @@
 .Btn_check_out:hover {
     background-color:rgb(255, 150, 0);
   }
+
+  @media only screen and (max-width: 560px) {
+    .Btn_check_out {
+        min-width: 80px;
+        font-size: 14px;
+    }
+    
+  }

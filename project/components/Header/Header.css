@@ -25,3 +25,14 @@
   width: 200px;
   margin-right: 10px;
 }
+
+@media only screen and (max-width: 560px) {
+  .Header_logo {
+      display: none;
+  }
+
+  .Header_cartInfo {
+    width: 100%;
+  }
+
+}

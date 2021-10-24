@@ -42,3 +42,14 @@
   margin: 0 auto;
   width: 3%;
 }
+
+@media only screen and (max-width: 560px) {
+  .Modal_content {
+      width: 98%;
+  }
+  .Modal_title {
+    font-size: 18px;
+    width: 90%;
+  }
+}
+

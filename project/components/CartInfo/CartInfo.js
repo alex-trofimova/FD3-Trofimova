@@ -35,7 +35,7 @@ class CartInfo extends React.PureComponent {
       <div className="CartInfo" >
         <div className="CartInfo_click" onClick={() => { this.setState( {isCartShown: true}); }}>
           <img src={cartIcon} alt={"cartIcon"}/>
-          <div>
+          <div className="CartInfo_click_info">
             <span className="CartInfo_click_name">Корзина</span><br/>
             <span> {totalNumber} ед. товара |  {totalPrice} руб. </span>
           </div> 

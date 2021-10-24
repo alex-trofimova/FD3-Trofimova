@@ -1,8 +1,21 @@
-﻿.CartInfo_click {
+﻿.CartInfo {
+    width: 100%;
+  }
+.CartInfo_click {
     cursor: pointer;
     display: flex;
     justify-content: space-between;
 }
+
+@media only screen and (max-width: 560px) {
+    .CartInfo_click {
+        justify-content: flex-start;
+        margin-left: 10px;
+    }
+    .CartInfo_click_info {
+        margin-left: 30px;
+    }
+  }
 
 .CartInfo_click_name {
     color: rgb(255, 165, 0);
